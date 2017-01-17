@@ -86,12 +86,13 @@ function getTwo(cb) {
 			}])
 			.toArray((err, arr) => {
 				if (err) {
+					db.close();
 					error(err);
 					return cb(err);
 				}
 				if (arr[0].idea !== arr[1].idea) {
 					db.close();
-					return cb(null, arr[0].idea + ' with ' + arr[1].idea);
+					return cb(null, [arr[0].idea, arr[1].idea]);
 				} else {
 					return getTwo(cb);
 				}
