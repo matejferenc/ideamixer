@@ -3,13 +3,15 @@
 const express = require('express');
 const app = express();
 const db = require('./lib/db.js');
+const crypto = require('crypto');
 
 const debug = require('debug')('ideamixer');
 const config = require('./config.js');
 const port = 80;
 const strings = {
 	serverError: 'Internal server error!',
-	invalidRanking: 'Internal server error!'
+	invalidRanking: 'Invalid ranking.',
+	rankingSaved: 'Ranking successfully saved to db.'
 };
 
 // TODO logger
@@ -18,6 +20,9 @@ const error = console.error;
 // middleware
 const helmet = require('helmet');
 app.use(helmet());
+
+const cookieParser = require('cookie-parser');
+app.use(cookieParser(config.cookieSecret));
 
 const session = require('express-session'); //https://www.npmjs.com/package/express-session
 const MongoStore = require('connect-mongo')(session); //https://www.npmjs.com/package/connect-mongo
@@ -44,6 +49,51 @@ app.use(bodyParser.urlencoded({
 }));
 
 
+/**
+ * User cookie middleware.
+ * If the user has uuid cookie, skips, otherwise generate new random uuid.
+ */
+app.use(userCookie);
+
+function userCookie(req, res, next) {
+	if (!req.cookies) return next(new Error('Problem with cookie-parser module, no cookie object.'));
+	if (!req.cookies.uuid) {
+		newUser((err, uuid) => {
+			if (err) return next(err);
+			res.cookie('uuid', uuid);
+			next();
+		});
+	} else {
+		next();
+	}
+}
+
+function newUser(cb) {
+	var randomHex = crypto.randomBytes(16).toString('hex'); //random new user id
+	db((err, db) => {
+		if (err) return cb(err);
+		db.collection(config.db.users).findOne({ //check if already exists
+			uuid: randomHex
+		}, (err, user) => {
+			if (!user || user.length === 0) { //create new user
+				db.collection(config.db.users).insertOne({
+					uuid: randomHex
+				}, (err) => {
+					db.close();
+					if (err) return cb(err);
+					return cb(null, randomHex);
+				});
+			} else { //repeat until uuid is unique
+				db.close(); //innefective but this code should basically never run
+				return newUser((err, uuid) => {
+					if (err) return cb(err);
+					return cb(null, uuid);
+				});
+			}
+		});
+	});
+}
+
 
 /**
  * Start server.
@@ -64,8 +114,8 @@ app.get('/', (req, res) => {
 
 
 /**
- * Endpoint for generating random idea
- * returns 2 words
+ * Endpoint for generating random idea.
+ * Returns array of 2 words.
  */
 app.get('/idea/generate', (req, res, next) => {
 	getTwo((err, data) => {
@@ -103,8 +153,7 @@ function getTwo(cb) {
 
 
 /**
- * Endpoint for generating idea based on 1 specified word
- * returns 1 word
+ * Endpoint for generating idea based on 1 specified word, returns string.
  */
 app.get('/idea/generateOne', (req, res, next) => {
 	db((err, db) => {
@@ -116,8 +165,8 @@ app.get('/idea/generateOne', (req, res, next) => {
 				}
 			}])
 			.toArray((err, arr) => {
-				if (err) return next(err);
 				db.close();
+				if (err) return next(err);
 				return res.json(arr[0].idea);
 			});
 	});
@@ -126,27 +175,56 @@ app.get('/idea/generateOne', (req, res, next) => {
 
 
 /**
- * Endpoint for voting
- * parameters: 2 words, voting (1 of 3 values: GOOD, BAD, NONSENSE)
+ * Endpoint for voting.
+ * If a combination of uuid and idea is found, it is updated to current vote.
+ * 
+ * Parameters: 
+ * words - each word in separate word param
+ * ranking - one of GOOD, BAD, NONSENSE, FUNNY
  */
 app.post('/idea/rate', (req, res, next) => {
 	db((err, db) => {
 		if (err) return next(err);
 		var ranking = validateRanking(req.body.ranking);
-		if (!ranking) next(new Error(strings.invalidRanking));
-		db.collection(config.db.rankings).insertOne({
+		if (!ranking) return invalidRanking(req, res);
+		db.collection(config.db.rankings).findOne({
 			words: req.body.words,
-			user: req.body.fingerprint,
-			ranking: req.body.ranking
-		}, (err) => {
-			if (err) next(err);
-			debug(req.body);
-			db.close();
-			return res.send(req.body);
-		});
+			user: req.cookies.uuid,
+		}, (err, result) => {
+			if (err) return next(err);
+			//this user has not yet ranked this idea
+			if (!result) {
+				db.collection(config.db.rankings).insertOne({
+					words: req.body.words,
+					user: req.cookies.uuid,
+					ranking: req.body.ranking
+				}, (err) => {
+					db.close();
+					if (err) next(err);
+					return res.status(200).send();
+				});
 
+			} else if (result.ranking !== req.body.ranking) { // this user changed his ranking of this idea
+				db.collection(config.db.rankings).update({
+					_id: result._id
+				}, {
+					$set: {
+						ranking: req.body.ranking
+					}
+				}, (err) => {
+					db.close();
+					if (err) next(err);
+					return res.status(200).send();
+
+				});
+			} else { // duplicate ranking, skipping db ops
+				db.close();
+				return res.status(200).send();
+			}
+		});
 	});
 });
+
 
 
 function validateRanking(ranking) {
@@ -160,27 +238,44 @@ function validateRanking(ranking) {
 	}
 }
 
+function invalidRanking(req, res) {
+	error(new Error(strings.invalidRanking));
+	res.status(200).send();
+}
+
 
 
 /**
- * Endpoint for providing user’s idea
- * parameters: 1 word
- * will be stored in a separate table/collection waiting for approval
- * the input must be validated
- * each input containing suspicious characters like <># will be disregarded
- * basically any characters that can be used to do an attack
+ * Endpoint for providing user’s idea.
+ * 
+ * Parameters: 
+ * words - contains whole user submitted string
+ *
+ * Desc.:
+ * Stored in a separate collection per config, waiting for approval.
+ * Input is validated by middleware.
+ * Each input containing suspicious characters like <># will be disregarded 
+ * (basically any characters that can be used to do an attack).
  */
 app.post('/idea/submit', (req, res, next) => {
 	db((err, db) => {
 		if (err) return next(err);
-		db.collection('userIdeas').insertOne({
-			words: req.body.words,
-			user: req.body.fingerprint
-		}, (err) => {
-			if (err) next(err);
-			debug(req.body);
-			db.close();
-			return res.send(req.body);
+		db.collection(config.db.userIdeas).findOne({
+			words: req.body.words
+		}, (err, result) => {
+			if (!result) {
+				db.collection(config.db.userIdeas).insertOne({
+					words: req.body.words,
+					user: req.cookies.uuid
+				}, (err) => {
+					if (err) next(err);
+					db.close();
+					return res.send(req.body);
+				});
+			} else {
+				// idea already exists
+				res.status(200).send();
+			}
 		});
 	});
 });
@@ -188,11 +283,37 @@ app.post('/idea/submit', (req, res, next) => {
 
 
 /**
- * Endpoint for returning user’s rating
- * only for logged-in users
+ * Endpoint for returning user’s rating history.
  */
-app.get('/idea/history', (req, res) => {
-	res.send('TODO');
+app.get('/idea/history', (req, res, next) => {
+	db((err, db) => {
+		if (err) return next(err);
+		db.collection('rankings').find({
+			user: req.cookies.uuid
+		}).toArray((err, arr) => {
+			if (err) return next(err);
+			db.close();
+			return res.send(arr);
+		});
+	});
+});
+
+
+
+/**
+ * Endpoint for returning user’s submitted ideas.
+ */
+app.get('/user/history', (req, res, next) => {
+	db((err, db) => {
+		if (err) return next(err);
+		db.collection('userIdeas').find({
+			user: req.cookies.uuid
+		}).toArray((err, arr) => {
+			db.close();
+			if (err) return next(err);
+			return res.send(arr);
+		});
+	});
 });
 
 
