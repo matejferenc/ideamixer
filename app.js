@@ -7,7 +7,7 @@ const crypto = require('crypto');
 
 const debug = require('debug')('ideamixer');
 const config = require('./config.js');
-const port = 80;
+const port = 8880;
 const strings = {
 	serverError: 'Internal server error!',
 	invalidRanking: 'Invalid ranking.',
