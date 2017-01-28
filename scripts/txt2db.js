@@ -6,7 +6,7 @@ const debug = require('debug')('ideamixer');
 const collection = 'ideaBase';
 
 fs.readFile('./input.txt', 'utf8', (err, data) => {
-	if (err) return console.err(err);
+	if (err) throw err;
 	data = data.split('\n');
 	data = data.map((v) => {
 		return {
