@@ -14,11 +14,19 @@ fs.readFile('./input.txt', 'utf8', (err, data) => {
 		};
 	});
 	db((err, db) => {
-		if (err) return console.err(err);
+		if (err) throw err;
 		var col = db.collection(collection);
-		col.insertMany(data, (err, result) => {
-			if (err) return console.err(err);
-			debug(result);
+		data.forEach((v) => {
+		    col.remove(v, (err, result) => {
+                if (err) throw err;
+                debug(result);
+            });
+            col.insert(v, (err, result) => {
+                if (err) throw err;
+                debug(result);
+            });
 		});
 	});
 });
+
+process.exit();
