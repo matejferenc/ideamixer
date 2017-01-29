@@ -17,16 +17,15 @@ fs.readFile('./input.txt', 'utf8', (err, data) => {
 		if (err) throw err;
 		var col = db.collection(collection);
 		data.forEach((v) => {
-		    col.remove(v, (err, result) => {
-                if (err) throw err;
-                debug(result);
-            });
-            col.insert(v, (err, result) => {
+//		    col.remove(v, (err, result) => {
+//                if (err) throw err;
+//                debug(result);
+//            });
+            col.save(v, (err, result) => {
                 if (err) throw err;
                 debug(result);
             });
 		});
+//	    process.exit();
 	});
 });
-
-process.exit();
