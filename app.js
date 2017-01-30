@@ -10,8 +10,8 @@ const config = require('./config.js');
 const port = 8880;
 const strings = {
 	serverError: 'Internal server error!',
-	invalidRanking: 'Invalid ranking.',
-	rankingSaved: 'Ranking successfully saved to db.'
+	invalidRating: 'Invalid rating.',
+	ratingSaved: 'Rating successfully saved to db.'
 };
 
 // TODO logger
@@ -45,7 +45,7 @@ const csurf = require('csurf'); //https://www.npmjs.com/package/csurf
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
-	extended: false
+	extended: true
 }));
 
 
@@ -181,36 +181,37 @@ app.get('/idea/generateOne', (req, res, next) => {
  * 
  * Parameters: 
  * words - each word in separate word param
- * ranking - one of GOOD, BAD, NONSENSE, FUNNY
+ * rating - one of GOOD, BAD, NONSENSE, FUNNY
  */
 app.post('/idea/rate', (req, res, next) => {
 	db((err, db) => {
 		if (err) return next(err);
-		var ranking = validateRanking(req.body.ranking);
-		if (!ranking) return invalidRanking(req, res);
-		db.collection(config.db.rankings).findOne({
+		error(JSON.stringify(req.body));
+		var rating = validateRating(req.body.rating);
+		if (!rating) return invalidRating(req, res);
+		db.collection(config.db.ratings).findOne({
 			words: req.body.words,
 			user: req.cookies.uuid,
 		}, (err, result) => {
 			if (err) return next(err);
 			//this user has not yet ranked this idea
 			if (!result) {
-				db.collection(config.db.rankings).insertOne({
+				db.collection(config.db.ratings).insertOne({
 					words: req.body.words,
 					user: req.cookies.uuid,
-					ranking: req.body.ranking
+					rating: req.body.rating
 				}, (err) => {
 					db.close();
 					if (err) next(err);
 					return res.status(200).send();
 				});
 
-			} else if (result.ranking !== req.body.ranking) { // this user changed his ranking of this idea
-				db.collection(config.db.rankings).update({
+			} else if (result.rating !== req.body.rating) { // this user changed his rating of this idea
+				db.collection(config.db.ratings).update({
 					_id: result._id
 				}, {
 					$set: {
-						ranking: req.body.ranking
+						rating: req.body.rating
 					}
 				}, (err) => {
 					db.close();
@@ -218,7 +219,7 @@ app.post('/idea/rate', (req, res, next) => {
 					return res.status(200).send();
 
 				});
-			} else { // duplicate ranking, skipping db ops
+			} else { // duplicate rating, skipping db ops
 				db.close();
 				return res.status(200).send();
 			}
@@ -228,19 +229,19 @@ app.post('/idea/rate', (req, res, next) => {
 
 
 
-function validateRanking(ranking) {
-	if (ranking === 'GOOD' ||
-		ranking === 'BAD' ||
-		ranking === 'NONSENSE' ||
-		ranking === 'FUNNY') {
-		return ranking;
+function validateRating(rating) {
+	if (rating === 'GOOD' ||
+		rating === 'BAD' ||
+		rating === 'NONSENSE' ||
+		rating === 'FUNNY') {
+		return rating;
 	} else {
 		return false;
 	}
 }
 
-function invalidRanking(req, res) {
-	error(new Error(strings.invalidRanking));
+function invalidRating(req, res) {
+	error(new Error(strings.invalidRating + " " + JSON.stringify(req.body)));
 	res.status(200).send();
 }
 
@@ -289,7 +290,7 @@ app.post('/idea/submit', (req, res, next) => {
 app.get('/idea/history', (req, res, next) => {
 	db((err, db) => {
 		if (err) return next(err);
-		db.collection('rankings').find({
+		db.collection(config.db.rating).find({
 			user: req.cookies.uuid
 		}).toArray((err, arr) => {
 			if (err) return next(err);

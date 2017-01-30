@@ -6,16 +6,16 @@ function logFacebookLogout(facebookId) {
     sendToGa('facebook', 'logout', facebookId, null)
 }
 
-function logMapDrag() {
-    sendToGa('map', 'drag', null, null);
+function logGenerate2() {
+    sendToGa('idea', 'generate', 2, null);
 }
 
-function logMapZoomChange() {
-    sendToGa('map', 'zoom', null, null);
+function logGenerate1() {
+    sendToGa('idea', 'generate', 1, null);
 }
 
-function logSettingsOpen() {
-    sendToGa('settings', 'open', null, null);
+function logRating(words, rating) {
+    sendToGa('idea', 'rate', words, rating);
 }
 
 function logSettingsClosed() {

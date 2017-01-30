@@ -3,7 +3,7 @@ module.exports = {
 		uri: 'localhost/ideamixer',
 		ideaBase: 'ideaBase',
 		users: 'users',
-		rankings: 'rankings',
+		ratings: 'ratings',
 		userIdeas: 'userIdeas'
 	},
 	cookieSecret: 'hJPMiG3EUFhTtpi0D1UyklG7FDD8DXaL'
