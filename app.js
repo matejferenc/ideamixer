@@ -98,7 +98,7 @@ function newUser(cb) {
 /**
  * Start server.
  */
-app.use(express.static('public'))
+app.use(express.static('xsicht/dist'))
 app.listen(port, () => {
 	console.log(`\n\x1b[1mServer listening on port ${port}!\n\x1b[22m`);
 });

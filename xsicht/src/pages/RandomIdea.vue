@@ -5,12 +5,14 @@
     <div id="ideas">
 	    <h2>
 	    	Can you combine<br>
-	    	<strong>Lorem</strong>
-	    	with <strong>Ipsum</strong>?
+	    	<span id="word1"><strong>Lorem</strong></span>
+	    	with
+	    	<span id="word2"><strong>Ipsum</strong></span>
+	    	?
 	    </h2>
 
-	    <a href="#" class="success">Good</a>
-	    <a href="#" class="failure">Bad</a>
+	    <a href="#" onclick="rate('GOOD');" class="success">Good</a>
+	    <a href="#" onclick="rate('BAD');" class="failure">Bad</a>
     </div>
   </div>
 </template>
@@ -33,7 +35,7 @@
 	.success {
 		background: #79d1ad;
 	}
-	
+
 	.success:hover {
 		background: #41bd8a;
 	}
