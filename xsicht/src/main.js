@@ -11,7 +11,7 @@ Vue.use(VueRouter)
 
 const routes = [
   { path: '/', component: Home },
-  { path: '/random/:ideaId?', component: RandomIdea },
+  { path: '/random', component: RandomIdea },
   { path: '/proposal', component: ProposalIdea },
   { path: '/my-ideas', component: MyIdeas }
 ]

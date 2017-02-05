@@ -5,17 +5,46 @@
     <div id="ideas">
 	    <h2>
 	    	Can you combine<br>
-	    	<span id="word1"><strong>Lorem</strong></span>
+	    	<span id="word1"><strong>{{ words[0] }}</strong></span>
 	    	with
-	    	<span id="word2"><strong>Ipsum</strong></span>
+	    	<span id="word2"><strong>{{ words[1] }}</strong></span>
 	    	?
 	    </h2>
 
-	    <a href="#" onclick="rate('GOOD');" class="success">Good</a>
-	    <a href="#" onclick="rate('BAD');" class="failure">Bad</a>
+	    <button @click="rate('GOOD');" class="success">Good</button>
+	    <button @click="rate('BAD');" class="failure">Bad</button>
     </div>
   </div>
 </template>
+
+<script>
+/* eslint-disable no-new */
+/* global axios:true */
+module.exports = {
+  data: function () {
+    return {
+      words: []
+    }
+  },
+  methods: {
+    getWords: function () {
+      var vueInst = this
+      axios.get('/idea/generate').then(function (response) {
+        vueInst.words = response.data
+      })
+    },
+    rate: function (rating) {
+      var vueInst = this
+      axios.post('/idea/rate', {rating: rating, words: vueInst.words}).then(function () {
+        vueInst.getWords()
+      })
+    }
+  },
+  mounted () {
+    this.getWords()
+  }
+}
+</script>
 
 <style>
 	h2 {
@@ -30,6 +59,9 @@
 		text-decoration: none;
 		transition: all .2s ease-in-out;
 		font-size: 18px;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
 	}
 
 	.success {
