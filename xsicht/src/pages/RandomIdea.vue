@@ -19,7 +19,10 @@
 
 <script>
 /* eslint-disable no-new */
-/* global axios:true */
+/* global logGenerate2, logRating */
+
+import axios from 'axios'
+
 module.exports = {
   data: function () {
     return {
@@ -28,15 +31,17 @@ module.exports = {
   },
   methods: {
     getWords: function () {
-      var vueInst = this
+      var vm = this
       axios.get('/idea/generate').then(function (response) {
-        vueInst.words = response.data
+        vm.words = response.data
+        logGenerate2()
       })
     },
     rate: function (rating) {
-      var vueInst = this
-      axios.post('/idea/rate', {rating: rating, words: vueInst.words}).then(function () {
-        vueInst.getWords()
+      var vm = this
+      axios.post('/idea/rate', {rating: rating, words: vm.words}).then(function () {
+        vm.getWords()
+        logRating(vm.words[0] + ', ' + vm.words[1], (rating === 'GOOD') ? 1 : 0)
       })
     }
   },
