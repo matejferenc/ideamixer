@@ -22,6 +22,7 @@
 /* global logGenerate2, logRating */
 
 import axios from 'axios'
+import querystring from 'querystring'
 
 module.exports = {
   data: function () {
@@ -39,9 +40,16 @@ module.exports = {
     },
     rate: function (rating) {
       var vm = this
-      axios.post('/idea/rate', {rating: rating, words: vm.words}).then(function () {
-        vm.getWords()
+      axios.post('/idea/rate', querystring.stringify({
+        rating: rating,
+        words: vm.words
+      }), {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }).then(function () {
         logRating(vm.words[0] + ', ' + vm.words[1], (rating === 'GOOD') ? 1 : 0)
+        vm.getWords()
       })
     }
   },
