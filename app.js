@@ -24,6 +24,9 @@ app.use(helmet());
 const cookieParser = require('cookie-parser');
 app.use(cookieParser(config.cookieSecret));
 
+//const history = require('connect-history-api-fallback');
+//app.use(history());
+
 const session = require('express-session'); //https://www.npmjs.com/package/express-session
 const MongoStore = require('connect-mongo')(session); //https://www.npmjs.com/package/connect-mongo
 
@@ -290,9 +293,10 @@ app.post('/idea/submit', (req, res, next) => {
 app.get('/idea/history', (req, res, next) => {
 	db((err, db) => {
 		if (err) return next(err);
-		db.collection(config.db.rating).find({
-			user: req.cookies.uuid
-		}).toArray((err, arr) => {
+		db.collection(config.db.ratings).find(
+		    {user: req.cookies.uuid},
+		    {words: true, rating: true, "_id": false}
+		).toArray((err, arr) => {
 			if (err) return next(err);
 			db.close();
 			return res.send(arr);
@@ -305,18 +309,18 @@ app.get('/idea/history', (req, res, next) => {
 /**
  * Endpoint for returning user’s submitted ideas.
  */
-app.get('/user/history', (req, res, next) => {
-	db((err, db) => {
-		if (err) return next(err);
-		db.collection('userIdeas').find({
-			user: req.cookies.uuid
-		}).toArray((err, arr) => {
-			db.close();
-			if (err) return next(err);
-			return res.send(arr);
-		});
-	});
-});
+//app.get('/user/history', (req, res, next) => {
+//	db((err, db) => {
+//		if (err) return next(err);
+//		db.collection('userIdeas').find({
+//			user: req.cookies.uuid
+//		}).toArray((err, arr) => {
+//			db.close();
+//			if (err) return next(err);
+//			return res.send(arr);
+//		});
+//	});
+//});
 
 
 

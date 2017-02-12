@@ -18,8 +18,8 @@ function logRating(words, rating) {
     sendToGa('idea', 'rate', words, rating);
 }
 
-function logSettingsClosed() {
-    sendToGa('settings', 'closed', null, null);
+function logShowHistory() {
+    sendToGa('idea', 'history', 'open', null);
 }
 
 function logColorSchemeChanged(scheme) {
