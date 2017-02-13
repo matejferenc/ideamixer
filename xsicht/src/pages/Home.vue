@@ -1,7 +1,24 @@
 <template>
   <div id="app">
-    <h1>Lorem ipsum...</h1>
-
-    <p>Nunc luctus eleifend purus, at pharetra lectus maximus quis. Donec tortor enim, tempor non metus a, rutrum blandit ipsum. Integer euismod et augue eget fringilla. Vestibulum sed enim dignissim, congue lacus quis, ornare tellus. Ut scelerisque aliquet odio, quis ullamcorper tellus efficitur a. Vestibulum id massa at risus placerat aliquam. Nullam orci urna, porttitor vitae accumsan nec, faucibus eget diam. Nullam scelerisque consequat sapien, non elementum tellus tristique sed. Nulla venenatis commodo varius.</p>
+    <h1>Idea Mixer</h1>
+        <ul>
+            <li>
+                Get fresh ideas for your business or startup
+            </li>
+            <li>
+                Discover hidden opportunities
+            </li>
+            <li>
+                See best rated ideas
+            </li>
+            <li>
+                Share your idea with friends
+            </li>
+        </ul>
+        <p>
+            Idea Mixer is a random generator of business ideas. Just click a button and get your idea! Rate the idea and get new ones.
+            You can find your ratings in <a href="my-ideas">my ideas</a> and return to them later.
+            If you have your own idea, just go to <a href="/proposal">proposal</a> and let the engine generate second part of the idea.
+        </p>
   </div>
 </template>
