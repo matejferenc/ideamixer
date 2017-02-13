@@ -184,7 +184,7 @@ app.get('/idea/generateOne', (req, res, next) => {
  * 
  * Parameters: 
  * words - each word in separate word param
- * rating - one of GOOD, BAD, NONSENSE, FUNNY
+ * rating - one of 1, -1
  */
 app.post('/idea/rate', (req, res, next) => {
 	db((err, db) => {
@@ -202,19 +202,19 @@ app.post('/idea/rate', (req, res, next) => {
 				db.collection(config.db.ratings).insertOne({
 					words: req.body.words,
 					user: req.cookies.uuid,
-					rating: req.body.rating
+					rating: rating
 				}, (err) => {
 					db.close();
 					if (err) next(err);
 					return res.status(200).send();
 				});
 
-			} else if (result.rating !== req.body.rating) { // this user changed his rating of this idea
+			} else if (result.rating !== rating) { // this user changed his rating of this idea
 				db.collection(config.db.ratings).update({
 					_id: result._id
 				}, {
 					$set: {
-						rating: req.body.rating
+						rating: rating
 					}
 				}, (err) => {
 					db.close();
@@ -233,11 +233,9 @@ app.post('/idea/rate', (req, res, next) => {
 
 
 function validateRating(rating) {
-	if (rating === 'GOOD' ||
-		rating === 'BAD' ||
-		rating === 'NONSENSE' ||
-		rating === 'FUNNY') {
-		return rating;
+	if (rating === '1' ||
+		rating === '-1') {
+		return parseInt(rating, 10);
 	} else {
 		return false;
 	}

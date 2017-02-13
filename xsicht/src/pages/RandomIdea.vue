@@ -11,8 +11,8 @@
 	    	?
 	    </h2>
 
-	    <button @click="rate('GOOD');" class="success">Good</button>
-	    <button @click="rate('BAD');" class="failure">Bad</button>
+	    <button @click="rate('1');" class="success">Good</button>
+	    <button @click="rate('-1');" class="failure">Bad</button>
     </div>
   </div>
 </template>
