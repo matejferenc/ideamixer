@@ -202,7 +202,8 @@ app.post('/idea/rate', (req, res, next) => {
 				db.collection(config.db.ratings).insertOne({
 					words: req.body.words,
 					user: req.cookies.uuid,
-					rating: rating
+					rating: rating,
+					timestamp: new Date()
 				}, (err) => {
 					db.close();
 					if (err) next(err);
@@ -214,7 +215,8 @@ app.post('/idea/rate', (req, res, next) => {
 					_id: result._id
 				}, {
 					$set: {
-						rating: rating
+						rating: rating,
+						timestamp: new Date()
 					}
 				}, (err) => {
 					db.close();
