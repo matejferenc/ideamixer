@@ -77,13 +77,13 @@
         simulation.force("link")
                 .links(graph.links);
 
-//        simulation.force("link").strength(function (d) {
-//            return 1 + Math.log(d.value);
-//        });
+        simulation.force("link").strength(function (d) {
+            return 1 + Math.log(d.value);
+        });
 
-//        simulation.force("charge", d3.forceManyBody().distanceMin(100).strength(function (d) {
-//            return -1000;
-//        }));
+        simulation.force("charge", d3.forceManyBody().distanceMin(100).strength(function (d) {
+            return -1000;
+        }));
 
 
         function ticked() {
