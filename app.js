@@ -334,7 +334,22 @@ app.get('/idea/graph', (req, res, next) => {
 		]).toArray((err, arr) => {
 			if (err) return next(err);
 			db.close();
-			return res.send(arr);
+			var nodesTmp = [];
+			var links = [];
+			arr.forEach(function(e){
+				if (!nodesTmp.contains(e.get("_id")[0])) {
+					nodesTmp.push(e.get("_id")[0]);
+				}
+				if (!nodesTmp.contains(e.get("_id")[1])) {
+					nodesTmp.push(e.get("_id")[1]);
+				}
+				links.push({"source": e.get("_id")[0], "target": e.get("_id")[1], "value": e.get("rating")});
+			});
+			var nodes = [];
+			nodesTmp.forEach(function (e) {
+				nodes.push({"id": e, "group": 0});
+			});
+			return res.send({"nodes": nodes, "links": links});
 		});
 	});
 });
