@@ -323,6 +323,22 @@ app.get('/idea/history', (req, res, next) => {
 //});
 
 
+app.get('/idea/graph', (req, req, next) => {
+	db((err, db) => {
+		if (err) return next(err);
+		db.collection(config.db.ratings).aggregate({
+			[{'$group': {
+				'_id': '$words',
+				rating: { '$sum': '$rating'}
+			}}]
+		}).toArray((err, arr) => {
+			if (err) return next(err);
+			db.close();
+			return res.send(arr);
+		});
+	});
+});
+
 
 /**
  * 404
