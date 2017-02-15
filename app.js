@@ -323,7 +323,7 @@ app.get('/idea/history', (req, res, next) => {
 //});
 
 
-app.get('/idea/graph', (req, req, next) => {
+app.get('/idea/graph', (req, res, next) => {
 	db((err, db) => {
 		if (err) return next(err);
 		db.collection(config.db.ratings).aggregate([
