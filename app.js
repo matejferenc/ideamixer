@@ -337,6 +337,9 @@ app.get('/idea/graph', (req, res, next) => {
 			var nodesTmp = [];
 			var links = [];
 			arr.forEach(function(e){
+				if (e["rating"] <= 0) {
+					return;
+				}
 				try {
 					if (!nodesTmp.indexOf(e["_id"][0]) > -1) {
 						nodesTmp.push(e["_id"][0]);
