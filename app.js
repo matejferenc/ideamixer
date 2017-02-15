@@ -337,13 +337,13 @@ app.get('/idea/graph', (req, res, next) => {
 			var nodesTmp = [];
 			var links = [];
 			arr.forEach(function(e){
-				if (!nodesTmp.contains(e.get("_id")[0])) {
-					nodesTmp.push(e.get("_id")[0]);
+				if (!nodesTmp.contains(e["_id"][0])) {
+					nodesTmp.push(e["_id"][0]);
 				}
-				if (!nodesTmp.contains(e.get("_id")[1])) {
-					nodesTmp.push(e.get("_id")[1]);
+				if (!nodesTmp.contains(e["_id"][1])) {
+					nodesTmp.push(e["_id"][1]);
 				}
-				links.push({"source": e.get("_id")[0], "target": e.get("_id")[1], "value": e.get("rating")});
+				links.push({"source": e["_id"][0], "target": e["_id"][1], "value": e["rating"]});
 			});
 			var nodes = [];
 			nodesTmp.forEach(function (e) {
