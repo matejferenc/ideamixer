@@ -341,10 +341,10 @@ app.get('/idea/graph', (req, res, next) => {
 					return;
 				}
 				try {
-					if (!nodesTmp.indexOf((e["_id"])[0]) > -1) {
+					if (nodesTmp.indexOf(e["_id"][0]) == -1) {
 						nodesTmp.push(e["_id"][0]);
 					}
-					if (!nodesTmp.indexOf((e["_id"])[1]) > -1) {
+					if (nodesTmp.indexOf(e["_id"][1]) == -1) {
 						nodesTmp.push(e["_id"][1]);
 					}
 				} catch (err) {
