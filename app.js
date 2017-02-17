@@ -327,47 +327,30 @@ app.get('/idea/graph/:start', (req, res, next) => {
 	var start = req.params.start;
 	db((err, db) => {
 		if (err) return next(err);
-		findGrouped(db, start).toArray((err, arr) => {
-			if (err) return next(err);
+		findGrouped(db, start, function(links) {
 			db.close();
+
+			
 			var nodesTmp = [];
-			var links = [];
-			arr.forEach(function(e){
-				if (e["rating"] <= 0) {
-					return;
-				}
-				if (nodesTmp.indexOf(e["_id"][0]) == -1) {
-					nodesTmp.push(e["_id"][0]);
-				}
-				if (nodesTmp.indexOf(e["_id"][1]) == -1) {
-					nodesTmp.push(e["_id"][1]);
-				}
-				var reversed = links.filter(function(i) {
-					return i.source == e["_id"][1] && i.target == e["_id"][0];
-				});
-				var rating = 0;
-				links = links.reduce(function(reduced, item) {
-					if (item.source == e["_id"][1] && item.target == e["_id"][0]) {
-						//we remove the element from links and remember it's rating
-						rating = item.value;
-					} else {
-						reduced.push(item);
-					}
-					return reduced;
-				}, []);
-				links.push({"source": e["_id"][0], "target": e["_id"][1], "value": e["rating"] + rating});
-			});
+			if (nodesTmp.indexOf(e["_id"][0]) == -1) {
+				nodesTmp.push(e["_id"][0]);
+			}
+			if (nodesTmp.indexOf(e["_id"][1]) == -1) {
+				nodesTmp.push(e["_id"][1]);
+			}
 			var nodes = [];
 			nodesTmp.forEach(function (e) {
 				nodes.push({"id": e, "group": 0});
 			});
+
+
 			return res.send({"nodes": nodes, "links": links});
 		});
 	});
 });
 
-function findGrouped(db, start) {
-	return db.collection(config.db.ratings).aggregate([
+function findGrouped(db, start, cb) {
+	db.collection(config.db.ratings).aggregate([
 		{
 			'$match': {
 				words: {
@@ -383,7 +366,27 @@ function findGrouped(db, start) {
 				rating: {'$sum': '$rating'}
 			}
 		}
-	]);
+	]).toArray((err, arr) => {
+		if (err) return next(err);
+		var links = [];
+		arr.forEach(function(e){
+			var rating = 0;
+			links = links.reduce(function(reduced, item) {
+				if (item.source == e["_id"][1] && item.target == e["_id"][0]) {
+					//we remove the element from links and remember its rating
+					rating = item.value;
+				} else {
+					reduced.push(item);
+				}
+				return reduced;
+			}, []);
+			links.push({"source": e["_id"][0], "target": e["_id"][1], "value": e["rating"] + rating});
+		});
+		links = links.filter(function(item) {
+			return item.value > 0;
+		});
+		cb(links);
+	});
 }
 
 
