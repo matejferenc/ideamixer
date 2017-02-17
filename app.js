@@ -329,14 +329,18 @@ app.get('/idea/graph/:start', (req, res, next) => {
 		if (err) return next(err);
 		findGrouped(db, start, function(links) {
 			var allLinks = links;
+			error("11111 allLinks now have this size: " + allLinks.length);
 			links.forEach(function(e) {
 				findGrouped(db, e.target, function(secondLinks) {
 					secondLinks = secondLinks.filter(function(item) {
 						return item.target != start;
 					});
+					error("we found these second neighbors: " + JSON.stringify(secondLinks));
 					allLinks = allLinks.concat(secondLinks);
+					error("allLinks now have this size: " + allLinks.length);
 				});
 			});
+			error("22222 allLinks now have this size: " + allLinks.length);
 			db.close();
 
 			var nodesTmp = [];
