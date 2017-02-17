@@ -328,11 +328,18 @@ app.get('/idea/graph/:start', (req, res, next) => {
 	db((err, db) => {
 		if (err) return next(err);
 		findGrouped(db, start, function(links) {
-			db.close();
-
+			var allLinks = links;
+			links.forEach(function(e) {
+				findGrouped(db, e.target, function(secondLinks) {
+					secondLinks = secondLinks.filter(function(item) {
+						return item.target != start;
+					});
+					allLinks.push.apply(allLinks, secondLinks);
+				});
+			});
 
 			var nodesTmp = [];
-			links.forEach(function(e) {
+			allLinks.forEach(function(e) {
 				if (nodesTmp.indexOf(e.source) == -1) {
 					nodesTmp.push(e.source);
 				}
@@ -346,7 +353,7 @@ app.get('/idea/graph/:start', (req, res, next) => {
 			});
 
 
-			return res.send({"nodes": nodes, "links": links});
+			return res.send({"nodes": nodes, "links": allLinks});
 		});
 	});
 });
@@ -369,12 +376,16 @@ function findGrouped(db, start, cb) {
 			}
 		}
 	]).toArray((err, arr) => {
-		if (err) return next(err);
+		if (err) {
+			db.close();
+			return next(err);
+		}
 		var links = [];
 		arr.forEach(function(e){
 			var rating = 0;
 			links = links.reduce(function(reduced, item) {
 				if (item.source == e["_id"][1] && item.target == e["_id"][0]) {
+					//if we find rating which is swapped (i.e. has 'start' as the second parameter)
 					//we remove the element from links and remember its rating
 					rating = item.value;
 				} else {
@@ -382,7 +393,16 @@ function findGrouped(db, start, cb) {
 				}
 				return reduced;
 			}, []);
-			links.push({"source": e["_id"][0], "target": e["_id"][1], "value": e["rating"] + rating});
+			var secondWord;
+			if (e["_id"][0] == start) {
+				secondWord = e["_id"][1];
+			} else if (e["_id"][1] == start) {
+				secondWord = e["_id"][0];
+			} else {
+				db.close();
+				return next(err);
+			}
+			links.push({"source": start, "target": secondWord, "value": e["rating"] + rating});
 		});
 		links = links.filter(function(item) {
 			return item.value > 0;
