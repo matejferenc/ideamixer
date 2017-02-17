@@ -323,15 +323,11 @@ app.get('/idea/history', (req, res, next) => {
 //});
 
 
-app.get('/idea/graph', (req, res, next) => {
+app.get('/idea/graph/:start', (req, res, next) => {
+	var start = req.params.start;
 	db((err, db) => {
 		if (err) return next(err);
-		db.collection(config.db.ratings).aggregate([
-			{'$group': {
-				'_id': '$words',
-				rating: {'$sum': '$rating'}
-			}}
-		]).toArray((err, arr) => {
+		findGrouped(start).toArray((err, arr) => {
 			if (err) return next(err);
 			db.close();
 			var nodesTmp = [];
@@ -369,6 +365,26 @@ app.get('/idea/graph', (req, res, next) => {
 		});
 	});
 });
+
+function findGrouped(start) {
+	return db.collection(config.db.ratings).aggregate([
+		{
+			'$match': {
+				words: {
+					'$elemMatch': {
+						'$eq': start
+					}
+				}
+			}
+		},
+		{
+			'$group': {
+				'_id': '$words',
+				rating: {'$sum': '$rating'}
+			}
+		}
+	]);
+}
 
 
 /**
