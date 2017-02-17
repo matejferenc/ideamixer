@@ -327,7 +327,7 @@ app.get('/idea/graph/:start', (req, res, next) => {
 	var start = req.params.start;
 	db((err, db) => {
 		if (err) return next(err);
-		findGrouped(start).toArray((err, arr) => {
+		findGrouped(db, start).toArray((err, arr) => {
 			if (err) return next(err);
 			db.close();
 			var nodesTmp = [];
@@ -366,7 +366,7 @@ app.get('/idea/graph/:start', (req, res, next) => {
 	});
 });
 
-function findGrouped(start) {
+function findGrouped(db, start) {
 	return db.collection(config.db.ratings).aggregate([
 		{
 			'$match': {
