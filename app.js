@@ -331,9 +331,9 @@ app.get('/idea/graph/:start', (req, res, next) => {
 			var allLinks = links;
 			links.forEach(function(e) {
 				findGrouped(db, e.target, function(secondLinks) {
-					secondLinks = secondLinks.filter(function(item) {
-						return item.target != start;
-					});
+					// secondLinks = secondLinks.filter(function(item) {
+					// 	return item.target != start;
+					// });
 					allLinks.push.apply(allLinks, secondLinks);
 				});
 			});
