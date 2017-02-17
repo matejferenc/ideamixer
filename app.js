@@ -330,40 +330,48 @@ app.get('/idea/graph/:start', (req, res, next) => {
 		findGrouped(db, start, function(links) {
 			var allLinks = links;
 			error("11111 allLinks now have this size: " + allLinks.length);
-			links.forEach(function(e) {
-				findGrouped(db, e.target, function(secondLinks) {
-					secondLinks = secondLinks.filter(function(item) {
-						return item.target != start;
+			var promises = links.map(function(e) {
+				return new Promise(function(resolve, reject) {
+					findGrouped(db, e.target, function(secondLinks) {
+						secondLinks = secondLinks.filter(function(item) {
+							return item.target != start;
+						});
+						error("we found these second neighbors: " + JSON.stringify(secondLinks));
+						allLinks = allLinks.concat(secondLinks);
+						error("allLinks now have this size: " + allLinks.length);
+						resolve();
+					}, function() {
+						reject();
 					});
-					error("we found these second neighbors: " + JSON.stringify(secondLinks));
-					allLinks = allLinks.concat(secondLinks);
-					error("allLinks now have this size: " + allLinks.length);
 				});
 			});
-			error("22222 allLinks now have this size: " + allLinks.length);
-			db.close();
 
-			var nodesTmp = [];
-			allLinks.forEach(function(e) {
-				if (nodesTmp.indexOf(e.source) == -1) {
-					nodesTmp.push(e.source);
-				}
-				if (nodesTmp.indexOf(e.target) == -1) {
-					nodesTmp.push(e.target);
-				}
-			});
-			var nodes = [];
-			nodesTmp.forEach(function (e) {
-				nodes.push({"id": e, "group": 0});
-			});
+			Promise.all(promises).then(function() {
+				error("22222 allLinks now have this size: " + allLinks.length);
+				db.close();
+
+				var nodesTmp = [];
+				allLinks.forEach(function(e) {
+					if (nodesTmp.indexOf(e.source) == -1) {
+						nodesTmp.push(e.source);
+					}
+					if (nodesTmp.indexOf(e.target) == -1) {
+						nodesTmp.push(e.target);
+					}
+				});
+				var nodes = [];
+				nodesTmp.forEach(function (e) {
+					nodes.push({"id": e, "group": 0});
+				});
 
 
-			return res.send({"nodes": nodes, "links": allLinks});
+				return res.send({"nodes": nodes, "links": allLinks});
+			}).catch(error);
 		});
 	});
 });
 
-function findGrouped(db, start, cb) {
+function findGrouped(db, start, cb, fail) {
 	db.collection(config.db.ratings).aggregate([
 		{
 			'$match': {
@@ -383,6 +391,7 @@ function findGrouped(db, start, cb) {
 	]).toArray((err, arr) => {
 		if (err) {
 			db.close();
+			fail();
 			return next(err);
 		}
 		var links = [];
@@ -405,6 +414,7 @@ function findGrouped(db, start, cb) {
 				secondWord = e["_id"][0];
 			} else {
 				db.close();
+				fail();
 				return next(err);
 			}
 			links.push({"source": start, "target": secondWord, "value": e["rating"] + rating});
