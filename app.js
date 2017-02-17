@@ -330,14 +330,16 @@ app.get('/idea/graph/:start', (req, res, next) => {
 		findGrouped(db, start, function(links) {
 			db.close();
 
-			
+
 			var nodesTmp = [];
-			if (nodesTmp.indexOf(e["_id"][0]) == -1) {
-				nodesTmp.push(e["_id"][0]);
-			}
-			if (nodesTmp.indexOf(e["_id"][1]) == -1) {
-				nodesTmp.push(e["_id"][1]);
-			}
+			links.forEach(function(e) {
+				if (nodesTmp.indexOf(e.source) == -1) {
+					nodesTmp.push(e.source);
+				}
+				if (nodesTmp.indexOf(e.target) == -1) {
+					nodesTmp.push(e.target);
+				}
+			});
 			var nodes = [];
 			nodesTmp.forEach(function (e) {
 				nodes.push({"id": e, "group": 0});
