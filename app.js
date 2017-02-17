@@ -334,7 +334,7 @@ app.get('/idea/graph/:start', (req, res, next) => {
 					secondLinks = secondLinks.filter(function(item) {
 						return item.target != start;
 					});
-					error("we found these second neighbors: " + secondLinks);
+					error("we found these second neighbors: " + JSON.stringify(secondLinks));
 					allLinks.concat(secondLinks);
 				});
 			});
