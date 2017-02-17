@@ -47,11 +47,12 @@
                     return d.value;
                 });
 
-        var node = svg.append("g")
+        var g = svg.append("g")
                 .attr("class", "nodesTmp")
                 .selectAll("circle")
                 .data(graph.nodes)
-                .enter().append("g").append("circle")
+                .enter().append("g");
+        var node = g.append("circle")
                 .attr("r", 5)
                 .attr("fill", function (d) {
                     return color(d.group);
@@ -61,14 +62,19 @@
                         .on("drag", dragged)
                         .on("end", dragended));
 
-        node.append("svg:title")
+//        node.append("svg:title")
+//                .text(function (d) {
+//                    return d.id;
+//                });
+        var text = g.append("svg:text")
                 .text(function (d) {
                     return d.id;
-                });
-        node.append("svg:text")
-                .text(function (d) {
-                    return d.id;
-                });
+                })
+                .call(d3.drag()
+                        .on("start", dragstarted)
+                        .on("drag", dragged)
+                        .on("end", dragended))
+                .attr("cursor", "pointer");
 
         simulation
                 .nodes(graph.nodes)
@@ -106,6 +112,14 @@
                         return d.x;
                     })
                     .attr("cy", function (d) {
+                        return d.y;
+                    });
+
+            text
+                    .attr("x", function (d) {
+                        return d.x;
+                    })
+                    .attr("y", function (d) {
                         return d.y;
                     });
         }
