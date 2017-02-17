@@ -337,6 +337,7 @@ app.get('/idea/graph/:start', (req, res, next) => {
 					allLinks.push.apply(allLinks, secondLinks);
 				});
 			});
+			db.close();
 
 			var nodesTmp = [];
 			allLinks.forEach(function(e) {
