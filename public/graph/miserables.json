@@ -1,7 +1,7 @@
 {
   "nodes": [
     {
-      "id": "condiments",
+      "id": "maps",
       "group": 0
     },
     {
@@ -9,71 +9,7 @@
       "group": 0
     },
     {
-      "id": "meditation",
-      "group": 0
-    },
-    {
-      "id": "iPhone app",
-      "group": 0
-    },
-    {
-      "id": "photography",
-      "group": 0
-    },
-    {
-      "id": "house cleaning",
-      "group": 0
-    },
-    {
-      "id": "vintage shop",
-      "group": 0
-    },
-    {
-      "id": "music lessons",
-      "group": 0
-    },
-    {
-      "id": "calligraphy",
-      "group": 0
-    },
-    {
-      "id": "pottery",
-      "group": 0
-    },
-    {
-      "id": "archeology",
-      "group": 0
-    },
-    {
-      "id": "selling eggs",
-      "group": 0
-    },
-    {
-      "id": "stickers",
-      "group": 0
-    },
-    {
-      "id": "home decoration",
-      "group": 0
-    },
-    {
-      "id": "Android app",
-      "group": 0
-    },
-    {
-      "id": "drawing comic",
-      "group": 0
-    },
-    {
-      "id": "bonsai",
-      "group": 0
-    },
-    {
-      "id": "making decorarion",
-      "group": 0
-    },
-    {
-      "id": "growing vegetables",
+      "id": "online news",
       "group": 0
     },
     {
@@ -81,187 +17,7 @@
       "group": 0
     },
     {
-      "id": "archaeology",
-      "group": 0
-    },
-    {
-      "id": "lawn care",
-      "group": 0
-    },
-    {
-      "id": "pet café",
-      "group": 0
-    },
-    {
-      "id": "doctors",
-      "group": 0
-    },
-    {
-      "id": "recycling",
-      "group": 0
-    },
-    {
-      "id": "dog walking",
-      "group": 0
-    },
-    {
-      "id": "babysitting",
-      "group": 0
-    },
-    {
-      "id": "GPS",
-      "group": 0
-    },
-    {
-      "id": "bakery",
-      "group": 0
-    },
-    {
-      "id": "home delivery",
-      "group": 0
-    },
-    {
-      "id": "travelling",
-      "group": 0
-    },
-    {
-      "id": "online news",
-      "group": 0
-    },
-    {
-      "id": "chimney sweep",
-      "group": 0
-    },
-    {
-      "id": "school",
-      "group": 0
-    },
-    {
-      "id": "celebrities",
-      "group": 0
-    },
-    {
-      "id": "bicycles",
-      "group": 0
-    },
-    {
-      "id": "newspaper",
-      "group": 0
-    },
-    {
-      "id": "organizing documents",
-      "group": 0
-    },
-    {
-      "id": "online marketing",
-      "group": 0
-    },
-    {
-      "id": "adds on a car",
-      "group": 0
-    },
-    {
-      "id": "maps",
-      "group": 0
-    },
-    {
-      "id": "loans",
-      "group": 0
-    },
-    {
-      "id": "delivery service",
-      "group": 0
-    },
-    {
-      "id": "petsitting",
-      "group": 0
-    },
-    {
-      "id": "quality pet food",
-      "group": 0
-    },
-    {
-      "id": "making candles",
-      "group": 0
-    },
-    {
-      "id": "charity",
-      "group": 0
-    },
-    {
-      "id": "cooking",
-      "group": 0
-    },
-    {
-      "id": "accounting",
-      "group": 0
-    },
-    {
-      "id": "boat cleaning",
-      "group": 0
-    },
-    {
-      "id": "QR code",
-      "group": 0
-    },
-    {
-      "id": "healthy fast food",
-      "group": 0
-    },
-    {
-      "id": "pet grooming",
-      "group": 0
-    },
-    {
-      "id": "space travel",
-      "group": 0
-    },
-    {
-      "id": "virtual reality",
-      "group": 0
-    },
-    {
-      "id": "mobile repair",
-      "group": 0
-    },
-    {
-      "id": "t-shirt printing",
-      "group": 0
-    },
-    {
-      "id": "home-grown vegetables",
-      "group": 0
-    },
-    {
-      "id": "personal training",
-      "group": 0
-    },
-    {
-      "id": "window cleaning",
-      "group": 0
-    },
-    {
-      "id": "knitting",
-      "group": 0
-    },
-    {
-      "id": "algorithms",
-      "group": 0
-    },
-    {
-      "id": "browser plugin",
-      "group": 0
-    },
-    {
-      "id": "e-shop",
-      "group": 0
-    },
-    {
-      "id": "homemade soaps",
-      "group": 0
-    },
-    {
-      "id": "grocery delivery",
+      "id": "calligraphy",
       "group": 0
     },
     {
@@ -269,484 +25,235 @@
       "group": 0
     },
     {
-      "id": "fitness",
+      "id": "restaurant",
+      "group": 0
+    },
+    {
+      "id": "bicycles",
+      "group": 0
+    },
+    {
+      "id": "petsitting",
+      "group": 0
+    },
+    {
+      "id": "meditation",
+      "group": 0
+    },
+    {
+      "id": "stickers",
+      "group": 0
+    },
+    {
+      "id": "condiments",
+      "group": 0
+    },
+    {
+      "id": "bonsai",
+      "group": 0
+    },
+    {
+      "id": "iPhone app",
+      "group": 0
+    },
+    {
+      "id": "music lessons",
+      "group": 0
+    },
+    {
+      "id": "machine learning",
+      "group": 0
+    },
+    {
+      "id": "drawing comic",
+      "group": 0
+    },
+    {
+      "id": "online marketing",
+      "group": 0
+    },
+    {
+      "id": "travelling",
+      "group": 0
+    },
+    {
+      "id": "archaeology",
+      "group": 0
+    },
+    {
+      "id": "cooking",
+      "group": 0
+    },
+    {
+      "id": "growing vegetables",
+      "group": 0
+    },
+    {
+      "id": "dog walking",
+      "group": 0
+    },
+    {
+      "id": "home decoration",
+      "group": 0
+    },
+    {
+      "id": "pottery",
+      "group": 0
+    },
+    {
+      "id": "photography",
+      "group": 0
+    },
+    {
+      "id": "making decorarion",
+      "group": 0
+    },
+    {
+      "id": "school",
+      "group": 0
+    },
+    {
+      "id": "GPS",
+      "group": 0
+    },
+    {
+      "id": "home delivery",
+      "group": 0
+    },
+    {
+      "id": "home-grown vegetables",
+      "group": 0
+    },
+    {
+      "id": "adds on a car",
+      "group": 0
+    },
+    {
+      "id": "grocery delivery",
+      "group": 0
+    },
+    {
+      "id": "selling eggs",
+      "group": 0
+    },
+    {
+      "id": "algorithms",
+      "group": 0
+    },
+    {
+      "id": "QR code",
       "group": 0
     }
   ],
   "links": [
     {
-      "source": "condiments",
+      "source": "maps",
       "target": "public park",
       "value": 1
     },
     {
-      "source": "meditation",
-      "target": "iPhone app",
+      "source": "maps",
+      "target": "online news",
       "value": 1
     },
     {
-      "source": "condiments",
-      "target": "photography",
-      "value": 1
-    },
-    {
-      "source": "house cleaning",
-      "target": "vintage shop",
-      "value": 1
-    },
-    {
-      "source": "music lessons",
-      "target": "iPhone app",
-      "value": 1
-    },
-    {
-      "source": "calligraphy",
-      "target": "pottery",
-      "value": 1
-    },
-    {
-      "source": "archeology",
-      "target": "iPhone app",
-      "value": 1
-    },
-    {
-      "source": "selling eggs",
-      "target": "stickers",
-      "value": 1
-    },
-    {
-      "source": "home decoration",
-      "target": "calligraphy",
-      "value": 1
-    },
-    {
-      "source": "Android app",
-      "target": "drawing comic",
-      "value": 1
-    },
-    {
-      "source": "bonsai",
-      "target": "making decorarion",
-      "value": 1
-    },
-    {
-      "source": "growing vegetables",
+      "source": "maps",
       "target": "space",
-      "value": 1
-    },
-    {
-      "source": "home decoration",
-      "target": "archaeology",
-      "value": 1
-    },
-    {
-      "source": "house cleaning",
-      "target": "lawn care",
-      "value": 1
-    },
-    {
-      "source": "lawn care",
-      "target": "house cleaning",
-      "value": 1
-    },
-    {
-      "source": "pet café",
-      "target": "Android app",
-      "value": 1
-    },
-    {
-      "source": "doctors",
-      "target": "recycling",
-      "value": 1
-    },
-    {
-      "source": "dog walking",
-      "target": "babysitting",
-      "value": 1
-    },
-    {
-      "source": "Android app",
-      "target": "babysitting",
-      "value": 1
-    },
-    {
-      "source": "GPS",
-      "target": "lawn care",
-      "value": 1
-    },
-    {
-      "source": "bakery",
-      "target": "home delivery",
-      "value": 3
-    },
-    {
-      "source": "travelling",
-      "target": "online news",
-      "value": 1
-    },
-    {
-      "source": "chimney sweep",
-      "target": "school",
-      "value": 1
-    },
-    {
-      "source": "celebrities",
-      "target": "iPhone app",
-      "value": 1
-    },
-    {
-      "source": "bicycles",
-      "target": "selling eggs",
-      "value": 1
-    },
-    {
-      "source": "newspaper",
-      "target": "celebrities",
-      "value": 1
-    },
-    {
-      "source": "growing vegetables",
-      "target": "iPhone app",
-      "value": 1
-    },
-    {
-      "source": "home delivery",
-      "target": "organizing documents",
-      "value": 1
-    },
-    {
-      "source": "doctors",
-      "target": "online marketing",
-      "value": 1
-    },
-    {
-      "source": "iPhone app",
-      "target": "adds on a car",
-      "value": 1
-    },
-    {
-      "source": "drawing comic",
-      "target": "newspaper",
-      "value": 1
-    },
-    {
-      "source": "celebrities",
-      "target": "maps",
-      "value": 1
-    },
-    {
-      "source": "home decoration",
-      "target": "pottery",
-      "value": 1
-    },
-    {
-      "source": "recycling",
-      "target": "home delivery",
-      "value": 1
-    },
-    {
-      "source": "dog walking",
-      "target": "celebrities",
-      "value": 1
-    },
-    {
-      "source": "GPS",
-      "target": "selling eggs",
-      "value": 1
-    },
-    {
-      "source": "loans",
-      "target": "school",
-      "value": 1
-    },
-    {
-      "source": "delivery service",
-      "target": "newspaper",
-      "value": 1
-    },
-    {
-      "source": "babysitting",
-      "target": "lawn care",
-      "value": 1
-    },
-    {
-      "source": "dog walking",
-      "target": "music lessons",
-      "value": 1
-    },
-    {
-      "source": "drawing comic",
-      "target": "online news",
-      "value": 1
-    },
-    {
-      "source": "GPS",
-      "target": "music lessons",
-      "value": 1
-    },
-    {
-      "source": "Android app",
-      "target": "growing vegetables",
-      "value": 1
-    },
-    {
-      "source": "pet café",
-      "target": "petsitting",
-      "value": 1
-    },
-    {
-      "source": "archaeology",
-      "target": "bicycles",
-      "value": 1
-    },
-    {
-      "source": "celebrities",
-      "target": "quality pet food",
-      "value": 1
-    },
-    {
-      "source": "making candles",
-      "target": "drawing comic",
-      "value": 1
-    },
-    {
-      "source": "delivery service",
-      "target": "GPS",
-      "value": 1
-    },
-    {
-      "source": "calligraphy",
-      "target": "growing vegetables",
-      "value": 1
-    },
-    {
-      "source": "newspaper",
-      "target": "charity",
-      "value": 1
-    },
-    {
-      "source": "house cleaning",
-      "target": "cooking",
-      "value": 1
-    },
-    {
-      "source": "stickers",
-      "target": "dog walking",
-      "value": 1
-    },
-    {
-      "source": "accounting",
-      "target": "organizing documents",
-      "value": 1
-    },
-    {
-      "source": "Android app",
-      "target": "boat cleaning",
-      "value": 1
-    },
-    {
-      "source": "dog walking",
-      "target": "calligraphy",
-      "value": 1
-    },
-    {
-      "source": "QR code",
-      "target": "healthy fast food",
-      "value": 1
-    },
-    {
-      "source": "making decorarion",
-      "target": "petsitting",
-      "value": 1
-    },
-    {
-      "source": "pet café",
-      "target": "bonsai",
-      "value": 1
-    },
-    {
-      "source": "pet grooming",
-      "target": "drawing comic",
-      "value": 1
-    },
-    {
-      "source": "celebrities",
-      "target": "archaeology",
-      "value": 1
-    },
-    {
-      "source": "adds on a car",
-      "target": "stickers",
-      "value": 1
-    },
-    {
-      "source": "meditation",
-      "target": "pet grooming",
-      "value": 1
-    },
-    {
-      "source": "cooking",
-      "target": "space travel",
-      "value": 1
-    },
-    {
-      "source": "school",
-      "target": "celebrities",
-      "value": 1
-    },
-    {
-      "source": "virtual reality",
-      "target": "QR code",
-      "value": 1
-    },
-    {
-      "source": "home decoration",
-      "target": "making decorarion",
-      "value": 2
-    },
-    {
-      "source": "mobile repair",
-      "target": "home delivery",
-      "value": 1
-    },
-    {
-      "source": "t-shirt printing",
-      "target": "iPhone app",
-      "value": 1
-    },
-    {
-      "source": "home-grown vegetables",
-      "target": "t-shirt printing",
-      "value": 1
-    },
-    {
-      "source": "personal training",
-      "target": "healthy fast food",
-      "value": 1
-    },
-    {
-      "source": "school",
-      "target": "pottery",
-      "value": 1
-    },
-    {
-      "source": "recycling",
-      "target": "home decoration",
-      "value": 2
-    },
-    {
-      "source": "making candles",
-      "target": "making decorarion",
-      "value": 1
-    },
-    {
-      "source": "online marketing",
-      "target": "online news",
-      "value": 1
-    },
-    {
-      "source": "window cleaning",
-      "target": "lawn care",
-      "value": 1
-    },
-    {
-      "source": "home-grown vegetables",
-      "target": "Android app",
-      "value": 1
-    },
-    {
-      "source": "petsitting",
-      "target": "quality pet food",
-      "value": 1
-    },
-    {
-      "source": "Android app",
-      "target": "vintage shop",
-      "value": 1
-    },
-    {
-      "source": "online marketing",
-      "target": "bakery",
-      "value": 1
-    },
-    {
-      "source": "babysitting",
-      "target": "celebrities",
       "value": 1
     },
     {
       "source": "maps",
       "target": "calligraphy",
-      "value": 1
-    },
-    {
-      "source": "calligraphy",
-      "target": "photography",
-      "value": 1
-    },
-    {
-      "source": "making decorarion",
-      "target": "bonsai",
       "value": 2
     },
     {
-      "source": "knitting",
+      "source": "maps",
+      "target": "snorkeling",
+      "value": 1
+    },
+    {
+      "source": "maps",
+      "target": "restaurant",
+      "value": 1
+    },
+    {
+      "source": "maps",
+      "target": "bicycles",
+      "value": 1
+    },
+    {
+      "source": "public park",
+      "target": "petsitting",
+      "value": 1
+    },
+    {
+      "source": "public park",
+      "target": "meditation",
+      "value": 1
+    },
+    {
+      "source": "public park",
+      "target": "stickers",
+      "value": 1
+    },
+    {
+      "source": "public park",
+      "target": "condiments",
+      "value": 1
+    },
+    {
+      "source": "public park",
+      "target": "restaurant",
+      "value": 1
+    },
+    {
+      "source": "public park",
+      "target": "bonsai",
+      "value": 1
+    },
+    {
+      "source": "public park",
+      "target": "iPhone app",
+      "value": 1
+    },
+    {
+      "source": "public park",
+      "target": "music lessons",
+      "value": 2
+    },
+    {
+      "source": "online news",
+      "target": "machine learning",
+      "value": 1
+    },
+    {
+      "source": "online news",
+      "target": "drawing comic",
+      "value": 1
+    },
+    {
+      "source": "online news",
       "target": "online marketing",
       "value": 1
     },
     {
-      "source": "adds on a car",
-      "target": "delivery service",
+      "source": "online news",
+      "target": "travelling",
       "value": 1
     },
     {
-      "source": "making decorarion",
-      "target": "photography",
-      "value": 1
-    },
-    {
-      "source": "bonsai",
-      "target": "public park",
-      "value": 1
-    },
-    {
-      "source": "algorithms",
-      "target": "browser plugin",
-      "value": 1
-    },
-    {
-      "source": "virtual reality",
-      "target": "adds on a car",
-      "value": 1
-    },
-    {
-      "source": "e-shop",
-      "target": "charity",
-      "value": 1
-    },
-    {
-      "source": "charity",
-      "target": "window cleaning",
-      "value": 1
-    },
-    {
-      "source": "pottery",
+      "source": "space",
       "target": "archaeology",
       "value": 1
     },
     {
-      "source": "dog walking",
-      "target": "charity",
+      "source": "space",
+      "target": "cooking",
       "value": 1
     },
     {
-      "source": "charity",
-      "target": "bakery",
-      "value": 1
-    },
-    {
-      "source": "bakery",
-      "target": "vintage shop",
+      "source": "space",
+      "target": "growing vegetables",
       "value": 1
     },
     {
@@ -755,83 +262,33 @@
       "value": 1
     },
     {
-      "source": "space travel",
-      "target": "recycling",
-      "value": 6
-    },
-    {
-      "source": "doctors",
-      "target": "healthy fast food",
+      "source": "calligraphy",
+      "target": "dog walking",
       "value": 1
     },
     {
-      "source": "algorithms",
-      "target": "bicycles",
-      "value": 1
-    },
-    {
-      "source": "e-shop",
-      "target": "delivery service",
-      "value": 1
-    },
-    {
-      "source": "space travel",
-      "target": "cooking",
-      "value": 1
-    },
-    {
-      "source": "homemade soaps",
-      "target": "organizing documents",
-      "value": 1
-    },
-    {
-      "source": "online marketing",
-      "target": "selling eggs",
-      "value": 1
-    },
-    {
-      "source": "bonsai",
-      "target": "stickers",
-      "value": 1
-    },
-    {
-      "source": "QR code",
-      "target": "iPhone app",
-      "value": 7
-    },
-    {
-      "source": "petsitting",
-      "target": "pet café",
-      "value": 1
-    },
-    {
-      "source": "making decorarion",
+      "source": "calligraphy",
       "target": "home decoration",
       "value": 1
     },
     {
-      "source": "e-shop",
-      "target": "QR code",
-      "value": 10
-    },
-    {
-      "source": "recycling",
-      "target": "pet grooming",
+      "source": "calligraphy",
+      "target": "pottery",
       "value": 1
     },
     {
-      "source": "chimney sweep",
-      "target": "mobile repair",
+      "source": "calligraphy",
+      "target": "photography",
       "value": 1
     },
     {
-      "source": "charity",
-      "target": "grocery delivery",
+      "source": "snorkeling",
+      "target": "travelling",
       "value": 1
     },
     {
-      "source": "iPhone app",
-      "target": "virtual reality",
+      "source": "snorkeling",
+      "target": "archaeology",
       "value": 1
     },
     {
@@ -840,54 +297,89 @@
       "value": 1
     },
     {
-      "source": "healthy fast food",
-      "target": "t-shirt printing",
+      "source": "snorkeling",
+      "target": "school",
       "value": 1
     },
     {
-      "source": "QR code",
-      "target": "charity",
+      "source": "snorkeling",
+      "target": "GPS",
       "value": 1
     },
     {
-      "source": "healthy fast food",
-      "target": "accounting",
+      "source": "restaurant",
+      "target": "drawing comic",
       "value": 1
     },
     {
-      "source": "Android app",
-      "target": "e-shop",
+      "source": "restaurant",
+      "target": "home delivery",
       "value": 1
     },
     {
-      "source": "house cleaning",
-      "target": "fitness",
+      "source": "restaurant",
+      "target": "GPS",
+      "value": 2
+    },
+    {
+      "source": "restaurant",
+      "target": "home-grown vegetables",
       "value": 1
     },
     {
-      "source": "maps",
-      "target": "snorkeling",
-      "value": 1
-    },
-    {
-      "source": "archaeology",
+      "source": "restaurant",
       "target": "public park",
       "value": 1
     },
     {
-      "source": "t-shirt printing",
-      "target": "drawing comic",
-      "value": 5
+      "source": "restaurant",
+      "target": "adds on a car",
+      "value": 2
     },
     {
-      "source": "celebrities",
-      "target": "t-shirt printing",
-      "value": 10
+      "source": "restaurant",
+      "target": "iPhone app",
+      "value": 2
     },
     {
-      "source": "GPS",
-      "target": "Android app",
-      "value": 10
+      "source": "restaurant",
+      "target": "grocery delivery",
+      "value": 1
+    },
+    {
+      "source": "bicycles",
+      "target": "selling eggs",
+      "value": 1
+    },
+    {
+      "source": "bicycles",
+      "target": "algorithms",
+      "value": 1
+    },
+    {
+      "source": "bicycles",
+      "target": "travelling",
+      "value": 2
+    },
+    {
+      "source": "bicycles",
+      "target": "selling eggs",
+      "value": 1
+    },
+    {
+      "source": "bicycles",
+      "target": "QR code",
+      "value": 1
+    },
+    {
+      "source": "bicycles",
+      "target": "GPS",
+      "value": 2
+    },
+    {
+      "source": "bicycles",
+      "target": "archaeology",
+      "value": 1
     }
   ]
 }

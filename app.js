@@ -327,49 +327,47 @@ app.get('/idea/graph/:start', (req, res, next) => {
 	var start = req.params.start;
 	db((err, db) => {
 		if (err) return next(err);
+		var group = 0;
+		var nodes = addNodes([], [start], group);
 		findGrouped(db, start, function(links) {
+			group = 1;
+			nodes = addNodes(nodes, links.map(link => link.target), group);
 			var allLinks = links;
-			error("11111 allLinks now have this size: " + allLinks.length);
 			var promises = links.map(function(e) {
 				return new Promise(function(resolve, reject) {
 					findGrouped(db, e.target, function(secondLinks) {
 						secondLinks = secondLinks.filter(function(item) {
 							return item.target != start;
 						});
-						error("we found these second neighbors: " + JSON.stringify(secondLinks));
 						allLinks = allLinks.concat(secondLinks);
-						error("allLinks now have this size: " + allLinks.length);
+						group = 2;
+						nodes = addNodes(nodes, secondLinks.map(link => link.target), group);
 						resolve();
 					}, function() {
+						db.close();
 						reject();
 					});
 				});
 			});
 
 			Promise.all(promises).then(function() {
-				error("22222 allLinks now have this size: " + allLinks.length);
 				db.close();
-
-				var nodesTmp = [];
-				allLinks.forEach(function(e) {
-					if (nodesTmp.indexOf(e.source) == -1) {
-						nodesTmp.push(e.source);
-					}
-					if (nodesTmp.indexOf(e.target) == -1) {
-						nodesTmp.push(e.target);
-					}
-				});
-				var nodes = [];
-				nodesTmp.forEach(function (e) {
-					nodes.push({"id": e, "group": 0});
-				});
-
-
 				return res.send({"nodes": nodes, "links": allLinks});
 			}).catch(error);
+		}, function() {
+			db.close();
 		});
 	});
 });
+
+function addNodes(nodes, words, group) {
+	words.forEach(word => {
+		if (!nodes.some(node => node.id == word)) {
+			nodes.push({"id": word, "group": group})
+		}
+	});
+	return nodes;
+}
 
 function findGrouped(db, start, cb, fail) {
 	db.collection(config.db.ratings).aggregate([
@@ -390,9 +388,7 @@ function findGrouped(db, start, cb, fail) {
 		}
 	]).toArray((err, arr) => {
 		if (err) {
-			db.close();
 			fail();
-			return next(err);
 		}
 		var links = [];
 		arr.forEach(function(e){
@@ -413,9 +409,7 @@ function findGrouped(db, start, cb, fail) {
 			} else if (e["_id"][1] == start) {
 				secondWord = e["_id"][0];
 			} else {
-				db.close();
 				fail();
-				return next(err);
 			}
 			links.push({"source": start, "target": secondWord, "value": e["rating"] + rating});
 		});
