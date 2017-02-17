@@ -340,18 +340,26 @@ app.get('/idea/graph', (req, res, next) => {
 				if (e["rating"] <= 0) {
 					return;
 				}
-				try {
-					if (nodesTmp.indexOf(e["_id"][0]) == -1) {
-						nodesTmp.push(e["_id"][0]);
-					}
-					if (nodesTmp.indexOf(e["_id"][1]) == -1) {
-						nodesTmp.push(e["_id"][1]);
-					}
-				} catch (err) {
-					error(err);
-					error(e);
+				if (nodesTmp.indexOf(e["_id"][0]) == -1) {
+					nodesTmp.push(e["_id"][0]);
 				}
-				links.push({"source": e["_id"][0], "target": e["_id"][1], "value": e["rating"]});
+				if (nodesTmp.indexOf(e["_id"][1]) == -1) {
+					nodesTmp.push(e["_id"][1]);
+				}
+				var reversed = links.filter(function(i) {
+					return i.source == e["_id"][1] && i.target == e["_id"][0];
+				});
+				var rating = 0;
+				links = links.reduce(function(reduced, item) {
+					if (item.source == e["_id"][1] && item.target == e["_id"][0]) {
+						//we remove the element from links and remember it's rating
+						rating = item.rating;
+					} else {
+						reduced.push(item);
+					}
+					return reduced;
+				}, []);
+				links.push({"source": e["_id"][0], "target": e["_id"][1], "value": e["rating"] + rating});
 			});
 			var nodes = [];
 			nodesTmp.forEach(function (e) {
