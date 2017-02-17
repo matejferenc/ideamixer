@@ -353,7 +353,7 @@ app.get('/idea/graph', (req, res, next) => {
 				links = links.reduce(function(reduced, item) {
 					if (item.source == e["_id"][1] && item.target == e["_id"][0]) {
 						//we remove the element from links and remember it's rating
-						rating = item.rating;
+						rating = item.value;
 					} else {
 						reduced.push(item);
 					}
