@@ -17,7 +17,7 @@ module.exports = {
     getGraph: function () {
       var vm = this
       axios.get('/idea/generateOne').then(function (response) {
-        var word = response
+        var word = response.data
         axios.get('/idea/graph/' + word).then(function (response) {
           vm.graph = response.data;
           asdf(vm.graph);
