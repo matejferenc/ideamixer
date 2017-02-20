@@ -16,9 +16,9 @@ module.exports = {
   methods: {
     getGraph: function () {
       var vm = this
-      axios.get('/idea/graph/map').then(function (response) {
+      axios.get('/idea/graph/maps').then(function (response) {
         vm.graph = response.data;
-        asdf(graph);
+        asdf(vm.graph);
       })
     }
   },
