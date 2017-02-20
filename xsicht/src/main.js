@@ -14,7 +14,7 @@ const routes = [
   { path: '/', component: Home },
   { path: '/random', component: RandomIdea },
   { path: '/proposal', component: ProposalIdea },
-  { path: '/my-ideas', component: MyIdeas }
+  { path: '/my-ideas', component: MyIdeas },
   { path: '/explore', component: Explore }
 ]
 

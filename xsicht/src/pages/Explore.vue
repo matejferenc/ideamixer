@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <svg width="960" height="600"></svg>
   </div>
 </template>
 
@@ -9,23 +10,24 @@ import axios from 'axios'
 module.exports = {
   data: function () {
     return {
-      words: []
+      graph: []
     }
   },
   methods: {
-    getWords: function () {
+    getGraph: function () {
       var vm = this
       axios.get('/idea/graph').then(function (response) {
-        vm.graph = response.data
+        vm.graph = response.data;
+        asdf(graph);
       })
     }
   },
   mounted () {
-    this.getWords()
+    this.getGraph()
   }
 }
 
-
+function asdf(graph) {
     var svg = d3.select("svg"),
             width = +svg.attr("width"),
             height = +svg.attr("height");
@@ -39,100 +41,97 @@ module.exports = {
 //            .force("charge", d3.forceManyBody().distanceMin(100).strength(-100))
             .force("center", d3.forceCenter(width / 2, height / 2));
 
-    d3.json("miserables.json", function (error, graph) {
-        if (error) throw error;
 
-        var link = svg.append("g")
-                .attr("class", "links")
-                .selectAll("line")
-                .data(graph.links)
-                .enter().append("line")
-                .attr("stroke-width", function (d) {
-                    return Math.sqrt(d.value);
-                });
+    var link = svg.append("g")
+            .attr("class", "links")
+            .selectAll("line")
+            .data(graph.links)
+            .enter().append("line")
+            .attr("stroke-width", function (d) {
+                return Math.sqrt(d.value);
+            });
 
-        link.append("svg:title")
-                .text(function (d) {
-                    return d.value;
-                });
+    link.append("svg:title")
+            .text(function (d) {
+                return d.value;
+            });
 
-        var g = svg.append("g")
-                .attr("class", "nodesTmp")
-                .selectAll("circle")
-                .data(graph.nodes)
-                .enter().append("g");
-        var node = g.append("circle")
-                .attr("r", 5)
-                .attr("fill", function (d) {
-                    return color(d.group);
-                })
-                .call(d3.drag()
-                        .on("start", dragstarted)
-                        .on("drag", dragged)
-                        .on("end", dragended));
+    var g = svg.append("g")
+            .attr("class", "nodesTmp")
+            .selectAll("circle")
+            .data(graph.nodes)
+            .enter().append("g");
+    var node = g.append("circle")
+            .attr("r", 5)
+            .attr("fill", function (d) {
+                return color(d.group);
+            })
+            .call(d3.drag()
+                    .on("start", dragstarted)
+                    .on("drag", dragged)
+                    .on("end", dragended));
 
 //        node.append("svg:title")
 //                .text(function (d) {
 //                    return d.id;
 //                });
-        var text = g.append("svg:text")
-                .text(function (d) {
-                    return d.id;
-                })
-                .call(d3.drag()
-                        .on("start", dragstarted)
-                        .on("drag", dragged)
-                        .on("end", dragended))
-                .attr("cursor", "pointer");
+    var text = g.append("svg:text")
+            .text(function (d) {
+                return d.id;
+            })
+            .call(d3.drag()
+                    .on("start", dragstarted)
+                    .on("drag", dragged)
+                    .on("end", dragended))
+            .attr("cursor", "pointer");
 
-        simulation
-                .nodes(graph.nodes)
-                .on("tick", ticked);
+    simulation
+            .nodes(graph.nodes)
+            .on("tick", ticked);
 
-        simulation.force("link")
-                .links(graph.links);
+    simulation.force("link")
+            .links(graph.links);
 
-        simulation.force("link").strength(function (d) {
-            return 1 + Math.log(d.value);
-        });
-
-        simulation.force("charge", d3.forceManyBody().distanceMin(100).strength(function (d) {
-            return -1000;
-        }));
-
-
-        function ticked() {
-            link
-                    .attr("x1", function (d) {
-                        return d.source.x;
-                    })
-                    .attr("y1", function (d) {
-                        return d.source.y;
-                    })
-                    .attr("x2", function (d) {
-                        return d.target.x;
-                    })
-                    .attr("y2", function (d) {
-                        return d.target.y;
-                    });
-
-            node
-                    .attr("cx", function (d) {
-                        return d.x;
-                    })
-                    .attr("cy", function (d) {
-                        return d.y;
-                    });
-
-            text
-                    .attr("x", function (d) {
-                        return d.x;
-                    })
-                    .attr("y", function (d) {
-                        return d.y;
-                    });
-        }
+    simulation.force("link").strength(function (d) {
+        return 1 + Math.log(d.value);
     });
+
+    simulation.force("charge", d3.forceManyBody().distanceMin(100).strength(function (d) {
+        return -1000;
+    }));
+
+
+    function ticked() {
+        link
+                .attr("x1", function (d) {
+                    return d.source.x;
+                })
+                .attr("y1", function (d) {
+                    return d.source.y;
+                })
+                .attr("x2", function (d) {
+                    return d.target.x;
+                })
+                .attr("y2", function (d) {
+                    return d.target.y;
+                });
+
+        node
+                .attr("cx", function (d) {
+                    return d.x;
+                })
+                .attr("cy", function (d) {
+                    return d.y;
+                });
+
+        text
+                .attr("x", function (d) {
+                    return d.x;
+                })
+                .attr("y", function (d) {
+                    return d.y;
+                });
+    }
 
     function dragstarted(d) {
         if (!d3.event.active) simulation.alphaTarget(0.3).restart();
@@ -150,6 +149,7 @@ module.exports = {
         d.fx = null;
         d.fy = null;
     }
+}
 
 </script>
 
