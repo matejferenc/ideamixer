@@ -8,6 +8,7 @@
 				<li><router-link to="/random/">Random</router-link></li>
 				<li><router-link to="/proposal">Proposal</router-link></li>
 				<li><router-link to="/my-ideas">MyIdeas</router-link></li>
+				<li><router-link to="/explore">Esplore</router-link></li>
 			</ul>
 		</nav>
 	</div>
