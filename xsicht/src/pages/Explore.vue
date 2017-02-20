@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <svg width="960" height="600" id="explore-svg"></svg>
+    
   </div>
 </template>
 
