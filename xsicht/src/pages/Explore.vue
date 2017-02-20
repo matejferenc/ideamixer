@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <svg width="960" height="600"></svg>
+    <svg width="960" height="600" id="explore-svg"></svg>
   </div>
 </template>
 
@@ -165,5 +165,9 @@ function asdf(graph) {
     .nodes circle {
         stroke: #fff;
         stroke-width: 1.5px;
+    }
+
+    #explore-svg {
+      background: #ffffff;
     }
 </style>
