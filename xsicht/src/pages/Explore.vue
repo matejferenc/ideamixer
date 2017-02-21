@@ -87,7 +87,8 @@ function asdf(graph) {
                     .on("start", dragstarted)
                     .on("drag", dragged)
                     .on("end", dragended))
-            .attr("cursor", "pointer");
+            .attr("cursor", "pointer")
+            .attr("onclick", "getGraph()");
 
     simulation
             .nodes(graph.nodes)
