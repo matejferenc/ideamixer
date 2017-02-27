@@ -56,7 +56,7 @@ module.exports = {
     submitIdea() {
       var vm = this
       var proposal = document.getElementById('word1').value
-      axios.post('/idea/rate', querystring.stringify({
+      axios.post('/idea/submit', querystring.stringify({
         idea: proposal
       }), {
         headers: {
