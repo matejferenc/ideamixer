@@ -94,4 +94,11 @@ module.exports = {
 	.failure:hover {
 		background: #da3339;
 	}
+
+	#word1 {
+    	font-weight: 400;
+        font-family: 'Lato', sans-serif;
+        font-size: 72px;
+        
+	}
 </style>
