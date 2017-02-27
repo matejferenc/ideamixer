@@ -48,7 +48,7 @@ module.exports = {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
       }).then(function () {
-        logRating(vm.words[0] + ', ' + vm.words[1], (rating === 'GOOD') ? 1 : -1)
+        logRating(vm.words[0] + ', ' + vm.words[1], rating)
         vm.getWords()
       })
     }

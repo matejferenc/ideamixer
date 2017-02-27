@@ -13,13 +13,15 @@
     }
 
 </style>
-<svg width="960" height="600"></svg>
+<!--<img style="width:100%;height:100%;">-->
+    <svg id="explore-svg" width="800" height="600" style="height: 100%; width: 100%"></svg>
+<!--</img>-->
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
-    var svg = d3.select("svg"),
-            width = +svg.attr("width"),
-            height = +svg.attr("height");
+    var svg = d3.select("svg");
+    var width = document.getElementById('explore-svg').clientWidth;
+    var height = document.getElementById('explore-svg').clientHeight;
 
     var color = d3.scaleOrdinal(d3.schemeCategory20);
 
@@ -74,7 +76,8 @@
                         .on("start", dragstarted)
                         .on("drag", dragged)
                         .on("end", dragended))
-                .attr("cursor", "pointer");
+                .attr("cursor", "pointer")
+                .attr("onclick", "alert('5')");
 
         simulation
                 .nodes(graph.nodes)
