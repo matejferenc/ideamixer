@@ -5,7 +5,7 @@
     <div id="ideas">
 	    <span class="canyou">
 	    	Can you combine<br/>
-	    	<input id="word1" @blur="submitIdea();"></input><br/>
+	    	<input id="word1" @blur="submitIdea();" placeholder="my great idea..."></input><br/>
 	    	with<br/>
 	    	<span id="word2"><strong>{{ word }}</strong></span>
 	    	?<br/>
@@ -117,5 +117,6 @@ module.exports = {
         background: transparent;
         border: none;
         text-align: center;
+        font-weight: bold;
 	}
 </style>
