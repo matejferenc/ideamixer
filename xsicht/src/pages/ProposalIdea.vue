@@ -8,7 +8,7 @@
 	    	<input id="word1" @blur="submitIdea();"></input><br/>
 	    	with<br/>
 	    	<span id="word2"><strong>{{ word }}</strong></span>
-	    	?
+	    	?<br/>
 	    </span>
 
 	    <button @click="rate('1');" class="success">Good</button>
@@ -114,6 +114,8 @@ module.exports = {
     	font-weight: 400;
         font-family: 'Lato', sans-serif;
         font-size: 72px;
-
+        background: transparent;
+        border: none;
+        text-align: center;
 	}
 </style>

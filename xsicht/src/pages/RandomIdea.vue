@@ -8,7 +8,7 @@
 	    	<span id="word1"><strong>{{ words[0] }}</strong></span><br/>
 	    	with<br/>
 	    	<span id="word2"><strong>{{ words[1] }}</strong></span>
-	    	?
+	    	?<br/>
 	    </span>
 
 	    <button @click="rate('1');" class="success">Good</button>
