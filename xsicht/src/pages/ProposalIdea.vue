@@ -40,7 +40,7 @@ module.exports = {
     },
     rate: function (rating) {
       var vm = this
-      var proposal = $('#word1').val()
+      var proposal = document.getElementById('word1').value
       axios.post('/idea/rate', querystring.stringify({
         rating: rating,
         words: [ proposal, vm.word ]
