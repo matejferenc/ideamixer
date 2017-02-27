@@ -7,4 +7,4 @@ module.exports = {
 		userIdeas: 'userIdeas'
 	},
 	cookieSecret: 'hJPMiG3EUFhTtpi0D1UyklG7FDD8DXaL'
-}
+};

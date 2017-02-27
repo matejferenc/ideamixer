@@ -265,21 +265,31 @@ function invalidRating(req, res) {
 app.post('/idea/submit', (req, res, next) => {
 	db((err, db) => {
 		if (err) return next(err);
-		db.collection(config.db.userIdeas).findOne({
-			words: req.body.words
+		db.collection(config.db.ideaBase).findOne({
+			idea: req.body.idea
 		}, (err, result) => {
 			if (!result) {
-				db.collection(config.db.userIdeas).insertOne({
-					words: req.body.words,
-					user: req.cookies.uuid
-				}, (err) => {
-					if (err) next(err);
-					db.close();
-					return res.send(req.body);
+				db.collection(config.db.userIdeas).findOne({
+					idea: req.body.idea
+				}, (err, result) => {
+					if (!result) {
+						db.collection(config.db.userIdeas).insertOne({
+							idea: req.body.idea,
+							user: req.cookies.uuid
+						}, (err) => {
+							if (err) next(err);
+							db.close();
+							return res.send(req.body);
+						});
+					} else {
+						// idea already exists
+						db.close();
+						res.status(200).send('already pending');
+					}
 				});
 			} else {
-				// idea already exists
-				res.status(200).send();
+				db.close();
+				res.status(200).send('already in database');
 			}
 		});
 	});

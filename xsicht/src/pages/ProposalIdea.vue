@@ -5,7 +5,7 @@
     <div id="ideas">
 	    <h2>
 	    	Can you combine<br>
-	    	<input id="word1"></input>
+	    	<input id="word1" @blur="submitIdea();"></input>
 	    	with
 	    	<span id="word2"><strong>{{ word }}</strong></span>
 	    	?
@@ -51,6 +51,19 @@ module.exports = {
       }).then(function () {
         logRating(proposal + ', ' + vm.word, rating)
         vm.getWord()
+      })
+    },
+    submitIdea() {
+      var vm = this
+      var proposal = document.getElementById('word1').value
+      axios.post('/idea/rate', querystring.stringify({
+        idea: proposal
+      }), {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }).then(function () {
+        logIdeaSubmit(proposal)
       })
     }
   },
@@ -99,6 +112,6 @@ module.exports = {
     	font-weight: 400;
         font-family: 'Lato', sans-serif;
         font-size: 72px;
-        
+
 	}
 </style>
