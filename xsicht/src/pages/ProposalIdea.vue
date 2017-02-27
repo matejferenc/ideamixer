@@ -3,13 +3,13 @@
     <h1>Proposal Idea</h1>
 
     <div id="ideas">
-	    <h2>
-	    	Can you combine<br>
-	    	<input id="word1" @blur="submitIdea();"></input>
-	    	with
+	    <span class="canyou">
+	    	Can you combine<br/>
+	    	<input id="word1" @blur="submitIdea();"></input><br/>
+	    	with<br/>
 	    	<span id="word2"><strong>{{ word }}</strong></span>
 	    	?
-	    </h2>
+	    </span>
 
 	    <button @click="rate('1');" class="success">Good</button>
 	    <button @click="rate('-1');" class="failure">Bad</button>
@@ -74,8 +74,10 @@ module.exports = {
 </script>
 
 <style>
-	h2 {
+	.canyou {
 		font-weight: 400;
+		font-family: 'Lato', sans-serif;
+        font-size: 72px;
 	}
 
 	.success, .failure {
