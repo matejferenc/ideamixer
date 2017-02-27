@@ -50,7 +50,7 @@ module.exports = {
         }
       }).then(function () {
         logRating(proposal + ', ' + vm.word, rating)
-        vm.getWords()
+        vm.getWord()
       })
     }
   },
