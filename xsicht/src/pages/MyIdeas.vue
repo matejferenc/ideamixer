@@ -8,14 +8,14 @@
         with
         {{ item.words[1] }}
 
-        <div v-if="item.rating == '1'">
+        <span v-if="item.rating == '1'">
             <button class="success" disabled="disabled">Good</button>
             <button @click="rate(item.words, '-1');" class="failure">Bad</button>
-        </div>
-        <div v-else>
-            <button class="failure" disabled="disabled">Bad</button>
+        </span>
+        <span v-else>
             <button @click="rate(item.words, '1');" class="success">Good</button>
-        </div>
+            <button class="failure" disabled="disabled">Bad</button>
+        </span>
       </li>
     </ul>
   </div>
