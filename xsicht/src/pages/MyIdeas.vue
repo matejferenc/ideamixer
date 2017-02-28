@@ -4,7 +4,9 @@
     <span>{{ history }}</span>
     <ul id="ideas">
       <li v-for="item in history">
-        {{ item.message }}
+        {{ item.words[0] }}
+        {{ item.words[1] }}
+        {{ item.rating }}
       </li>
     </ul>
   </div>
