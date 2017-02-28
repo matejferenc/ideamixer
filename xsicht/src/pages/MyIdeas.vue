@@ -4,7 +4,7 @@
     <span>{{ history }}</span>
     <ul id="ideas">
       <li v-for="item in history">
-        {{ item.words[0] }} with {{ item.words[1] }} {{ item.rating = '1' ? 'GOOD' : 'BAD' }}
+        {{ item.words[0] }} with {{ item.words[1] }} {{ item.rating == '1' ? 'GOOD' : 'BAD' }}
       </li>
     </ul>
   </div>
