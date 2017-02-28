@@ -7,9 +7,15 @@
         {{ item.words[0] }}
         with
         {{ item.words[1] }}
-        {{ item.rating == '1' ?
-            <button @click="rate(item.words, '1');" class="success">Good</button> :
-            <button @click="rate(item.words, '-1');" class="failure">Bad</button> }}
+
+        {{#if item.rating == '-1'}}
+            <button class="failure" disabled="disabled">Bad</button>
+            <button @click="rate(item.words, '1');" class="success">Good</button>
+        {{/if}}
+        {{#if item.rating == '1'}}
+            <button class="success" disabled="disabled">Good</button>
+            <button @click="rate(item.words, '-1');" class="failure">Bad</button>
+        {{/if}}
       </li>
     </ul>
   </div>
@@ -20,6 +26,7 @@
 /* global logShowHistory */
 
 import axios from 'axios'
+import querystring from 'querystring'
 
 module.exports = {
   data: function () {
@@ -55,3 +62,36 @@ module.exports = {
   }
 }
 </script>
+
+<style>
+
+	.success, .failure {
+		display: inline-block;
+		width: auto;
+		color: #fff;
+		padding: 5px 15px;
+		text-decoration: none;
+		transition: all .2s ease-in-out;
+		font-size: 18px;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+	}
+
+	.success {
+		background: #79d1ad;
+	}
+
+	.success:hover {
+		background: #41bd8a;
+	}
+
+	.failure {
+		margin-left: 20px;
+		background: #e67478;
+	}
+
+	.failure:hover {
+		background: #da3339;
+	}
+</style>
