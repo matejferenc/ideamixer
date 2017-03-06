@@ -8,12 +8,12 @@
         {{ item.words[1] }}
 
         <span v-if="item.rating == '1'">
-            <span class="success">Good</span>
+            <span class="successRated">Good</span>
             <button @click="rate(item.words, '-1');" class="failure">Bad</button>
         </span>
         <span v-else>
             <button @click="rate(item.words, '1');" class="success">Good</button>
-            <span class="failure">Bad</span>
+            <span class="failureRated">Bad</span>
         </span>
       </li>
     </ul>
@@ -81,6 +81,10 @@ module.exports = {
 		background: #79d1ad;
 	}
 
+	.successRated {
+	  color: #79d1ad;
+	}
+
 	.success:hover {
 		background: #41bd8a;
 	}
@@ -88,6 +92,10 @@ module.exports = {
 	.failure {
 		margin-left: 20px;
 		background: #e67478;
+	}
+
+	.failureRated {
+	  color: #e67478;
 	}
 
 	.failure:hover {
