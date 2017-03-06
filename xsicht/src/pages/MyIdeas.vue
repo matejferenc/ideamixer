@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <h1>My Ideas</h1>
-    <span>{{ history }}</span>
     <ul id="ideas">
       <li v-for="item in history">
         {{ item.words[0] }}
@@ -9,12 +8,12 @@
         {{ item.words[1] }}
 
         <span v-if="item.rating == '1'">
-            <button class="success" disabled="disabled">Good</button>
+            <span class="success">Good</span>
             <button @click="rate(item.words, '-1');" class="failure">Bad</button>
         </span>
         <span v-else>
             <button @click="rate(item.words, '1');" class="success">Good</button>
-            <button class="failure" disabled="disabled">Bad</button>
+            <span class="failure">Bad</span>
         </span>
       </li>
     </ul>
