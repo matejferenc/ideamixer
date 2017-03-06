@@ -83,6 +83,7 @@ module.exports = {
 
 	.successRated {
 	  color: #79d1ad;
+	  font-size: 18px;
 	}
 
 	.success:hover {
@@ -90,15 +91,22 @@ module.exports = {
 	}
 
 	.failure {
-		margin-left: 20px;
 		background: #e67478;
 	}
 
 	.failureRated {
 	  color: #e67478;
+	  font-size: 18px;
 	}
 
 	.failure:hover {
 		background: #da3339;
 	}
+
+	ul {
+    list-style-type: none;
+    list-style:none;
+    padding: 0;
+    margin: 0;
+  }
 </style>
