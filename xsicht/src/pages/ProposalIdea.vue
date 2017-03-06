@@ -113,7 +113,7 @@ module.exports = {
 	#word1 {
     	font-weight: 400;
         font-family: 'Lato', sans-serif;
-        font-size: 72px;
+        font-size: 48px;
         background: transparent;
         border: none;
         text-align: center;
