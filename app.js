@@ -24,8 +24,8 @@ app.use(helmet());
 const cookieParser = require('cookie-parser');
 app.use(cookieParser(config.cookieSecret));
 
-const history = require('connect-history-api-fallback');
-app.use(history());
+//const history = require('connect-history-api-fallback');
+//app.use(history());
 
 const session = require('express-session'); //https://www.npmjs.com/package/express-session
 const MongoStore = require('connect-mongo')(session); //https://www.npmjs.com/package/connect-mongo
