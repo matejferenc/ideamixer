@@ -350,7 +350,7 @@ app.put('/idea/userIdeas/:action/:word', (req, res, next) => {
                         }
                     }
                 }, (err, result) => {
-                    error("ERROR rejecting user idea2: " + word);
+                    error("ERROR rejecting user idea2: " + word + ", error:" + err);
                     db.close();
                     if (err) return cb(err);
                     return res.status(200).send();
