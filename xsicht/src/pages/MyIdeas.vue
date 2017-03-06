@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>My Ideas</h1>
+    <span class="subPageTitle">My Ideas</span>
     <ul id="ideas">
       <li v-for="item in history">
         {{ item.words[0] }}

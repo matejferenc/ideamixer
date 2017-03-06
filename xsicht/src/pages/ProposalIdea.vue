@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Proposal Idea</h1>
+    <span class="subPageTitle">Proposal Idea</span>
 
     <div id="ideas">
 	    <span class="canyou">
@@ -77,7 +77,7 @@ module.exports = {
 	.canyou {
 		font-weight: 400;
 		font-family: 'Lato', sans-serif;
-        font-size: 72px;
+    font-size: 48px;
 	}
 
 	.success, .failure {

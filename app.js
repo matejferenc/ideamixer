@@ -298,6 +298,21 @@ app.post('/idea/submit', (req, res, next) => {
 
 
 /**
+ * Endpoint for retrieving user ideas
+ */
+app.get('/idea/userIdeas', (req, res, next) => {
+    db((err, db) => {
+        if (err) return next(err);
+        db.collection(config.db.ideaBase).find().toArray((err, arr) => {
+            if (err) return next(err);
+            db.close();
+            return res.send(arr);
+        });
+    });
+});
+
+
+/**
  * Endpoint for returning user’s rating history.
  */
 app.get('/idea/history', (req, res, next) => {
