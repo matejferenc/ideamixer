@@ -303,7 +303,7 @@ app.post('/idea/submit', (req, res, next) => {
 app.get('/idea/userIdeas', (req, res, next) => {
     db((err, db) => {
         if (err) return next(err);
-        db.collection(config.db.ideaBase).find().toArray((err, arr) => {
+        db.collection(config.db.userIdeas).find().toArray((err, arr) => {
             if (err) return next(err);
             db.close();
             return res.send(arr);
