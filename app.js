@@ -319,20 +319,39 @@ app.put('/idea/userIdeas/:action/:word', (req, res, next) => {
         if (action === 'approve') {
             db.collection(config.db.userIdeas).remove({
                 idea: word
-            }, (err) => {
-                 db.close();
-                 if (err) return cb(err);
-                 return res.status(200).send();
-             });
-            db.collection(config.db.ideaBase).insertOne({
-                idea: word
-            }, (err) => {
-                db.close();
-                if (err) return cb(err);
-                return res.status(200).send();
+            }, (err, result) => {
+                if (err) {
+                    db.close();
+                    return cb(err);
+                }
+                db.collection(config.db.ideaBase).insertOne({
+                    idea: word
+                }, (err, result) => {
+                    db.close();
+                    if (err) return cb(err);
+                    return res.status(200).send();
+                });
             });
         } else if (action === 'reject') {
-
+            db.collection(config.db.userIdeas).remove({
+                idea: word
+            }, (err, result) => {
+                if (err) {
+                    db.close();
+                    return cb(err);
+                }
+                db.collection(config.db.ratings).remove({
+                    words: {
+                        '$elemMatch': {
+                            '$eq': word
+                        }
+                    }
+                }, (err, result) => {
+                    db.close();
+                    if (err) return cb(err);
+                    return res.status(200).send();
+                });
+            });
         }
     });
 });
