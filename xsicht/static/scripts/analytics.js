@@ -22,8 +22,8 @@ function logShowHistory() {
     sendToGa('idea', 'history', 'open', null);
 }
 
-function logColorSchemeChanged(scheme) {
-    sendToGa('settings', 'color', scheme, null);
+function logIdeaSubmit(idea) {
+    sendToGa('idea', 'submit', idea, null);
 }
 
 function logFilterChanged(filterName, value) {
