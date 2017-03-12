@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const db = require('./lib/db.js');
 const crypto = require('crypto');
+const controller = require('./controller.js');
 
 const debug = require('debug')('ideamixer');
 const config = require('./config.js');
@@ -111,9 +112,7 @@ app.listen(port, () => {
 /**
  * Homepage
  */
-app.get('/', (req, res) => {
-	res.send(['/idea/generate', '/idea/generateOne']);
-});
+app.get('/', controller.getHomepage);
 
 
 
