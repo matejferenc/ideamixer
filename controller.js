@@ -2,6 +2,9 @@
 const db = require('./lib/db.js');
 const config = require('./config.js');
 
+// TODO logger
+const error = console.error;
+
 module.exports = {
     getHomepage : (req, res) => {
         res.send(['/idea/generate', '/idea/generateOne']);
