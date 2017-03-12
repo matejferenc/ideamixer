@@ -1,3 +1,6 @@
+'use strict';
+const db = require('./lib/db.js');
+
 module.exports = {
     getHomepage : (req, res) => {
         res.send(['/idea/generate', '/idea/generateOne']);
