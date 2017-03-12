@@ -1,5 +1,6 @@
 'use strict';
 const db = require('./lib/db.js');
+const config = require('./config.js');
 
 module.exports = {
     getHomepage : (req, res) => {
