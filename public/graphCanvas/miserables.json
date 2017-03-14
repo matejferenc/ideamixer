@@ -1,0 +1,385 @@
+{
+  "nodes": [
+    {
+      "id": "maps",
+      "group": 0
+    },
+    {
+      "id": "public park",
+      "group": 1
+    },
+    {
+      "id": "online news",
+      "group": 1
+    },
+    {
+      "id": "space",
+      "group": 1
+    },
+    {
+      "id": "calligraphy",
+      "group": 1
+    },
+    {
+      "id": "snorkeling",
+      "group": 1
+    },
+    {
+      "id": "restaurant",
+      "group": 1
+    },
+    {
+      "id": "bicycles",
+      "group": 1
+    },
+    {
+      "id": "petsitting",
+      "group": 2
+    },
+    {
+      "id": "meditation",
+      "group": 2
+    },
+    {
+      "id": "stickers",
+      "group": 2
+    },
+    {
+      "id": "condiments",
+      "group": 2
+    },
+    {
+      "id": "bonsai",
+      "group": 2
+    },
+    {
+      "id": "iPhone app",
+      "group": 2
+    },
+    {
+      "id": "music lessons",
+      "group": 2
+    },
+    {
+      "id": "machine learning",
+      "group": 2
+    },
+    {
+      "id": "drawing comic",
+      "group": 2
+    },
+    {
+      "id": "online marketing",
+      "group": 2
+    },
+    {
+      "id": "travelling",
+      "group": 2
+    },
+    {
+      "id": "archaeology",
+      "group": 2
+    },
+    {
+      "id": "cooking",
+      "group": 2
+    },
+    {
+      "id": "growing vegetables",
+      "group": 2
+    },
+    {
+      "id": "dog walking",
+      "group": 2
+    },
+    {
+      "id": "home decoration",
+      "group": 2
+    },
+    {
+      "id": "pottery",
+      "group": 2
+    },
+    {
+      "id": "photography",
+      "group": 2
+    },
+    {
+      "id": "making decorarion",
+      "group": 2
+    },
+    {
+      "id": "school",
+      "group": 2
+    },
+    {
+      "id": "GPS",
+      "group": 2
+    },
+    {
+      "id": "home delivery",
+      "group": 2
+    },
+    {
+      "id": "home-grown vegetables",
+      "group": 2
+    },
+    {
+      "id": "adds on a car",
+      "group": 2
+    },
+    {
+      "id": "grocery delivery",
+      "group": 2
+    },
+    {
+      "id": "selling eggs",
+      "group": 2
+    },
+    {
+      "id": "algorithms",
+      "group": 2
+    },
+    {
+      "id": "QR code",
+      "group": 2
+    }
+  ],
+  "links": [
+    {
+      "source": "maps",
+      "target": "public park",
+      "value": 1
+    },
+    {
+      "source": "maps",
+      "target": "online news",
+      "value": 1
+    },
+    {
+      "source": "maps",
+      "target": "space",
+      "value": 1
+    },
+    {
+      "source": "maps",
+      "target": "calligraphy",
+      "value": 2
+    },
+    {
+      "source": "maps",
+      "target": "snorkeling",
+      "value": 1
+    },
+    {
+      "source": "maps",
+      "target": "restaurant",
+      "value": 1
+    },
+    {
+      "source": "maps",
+      "target": "bicycles",
+      "value": 1
+    },
+    {
+      "source": "public park",
+      "target": "petsitting",
+      "value": 1
+    },
+    {
+      "source": "public park",
+      "target": "meditation",
+      "value": 1
+    },
+    {
+      "source": "public park",
+      "target": "stickers",
+      "value": 1
+    },
+    {
+      "source": "public park",
+      "target": "condiments",
+      "value": 1
+    },
+    {
+      "source": "public park",
+      "target": "restaurant",
+      "value": 1
+    },
+    {
+      "source": "public park",
+      "target": "bonsai",
+      "value": 1
+    },
+    {
+      "source": "public park",
+      "target": "iPhone app",
+      "value": 1
+    },
+    {
+      "source": "public park",
+      "target": "music lessons",
+      "value": 2
+    },
+    {
+      "source": "online news",
+      "target": "machine learning",
+      "value": 1
+    },
+    {
+      "source": "online news",
+      "target": "drawing comic",
+      "value": 1
+    },
+    {
+      "source": "online news",
+      "target": "online marketing",
+      "value": 1
+    },
+    {
+      "source": "online news",
+      "target": "travelling",
+      "value": 1
+    },
+    {
+      "source": "space",
+      "target": "archaeology",
+      "value": 1
+    },
+    {
+      "source": "space",
+      "target": "cooking",
+      "value": 1
+    },
+    {
+      "source": "space",
+      "target": "growing vegetables",
+      "value": 1
+    },
+    {
+      "source": "calligraphy",
+      "target": "drawing comic",
+      "value": 1
+    },
+    {
+      "source": "calligraphy",
+      "target": "dog walking",
+      "value": 1
+    },
+    {
+      "source": "calligraphy",
+      "target": "home decoration",
+      "value": 1
+    },
+    {
+      "source": "calligraphy",
+      "target": "pottery",
+      "value": 1
+    },
+    {
+      "source": "calligraphy",
+      "target": "photography",
+      "value": 1
+    },
+    {
+      "source": "snorkeling",
+      "target": "travelling",
+      "value": 1
+    },
+    {
+      "source": "snorkeling",
+      "target": "archaeology",
+      "value": 1
+    },
+    {
+      "source": "snorkeling",
+      "target": "making decorarion",
+      "value": 1
+    },
+    {
+      "source": "snorkeling",
+      "target": "school",
+      "value": 1
+    },
+    {
+      "source": "snorkeling",
+      "target": "GPS",
+      "value": 1
+    },
+    {
+      "source": "restaurant",
+      "target": "drawing comic",
+      "value": 1
+    },
+    {
+      "source": "restaurant",
+      "target": "home delivery",
+      "value": 1
+    },
+    {
+      "source": "restaurant",
+      "target": "GPS",
+      "value": 2
+    },
+    {
+      "source": "restaurant",
+      "target": "home-grown vegetables",
+      "value": 1
+    },
+    {
+      "source": "restaurant",
+      "target": "public park",
+      "value": 1
+    },
+    {
+      "source": "restaurant",
+      "target": "adds on a car",
+      "value": 2
+    },
+    {
+      "source": "restaurant",
+      "target": "iPhone app",
+      "value": 2
+    },
+    {
+      "source": "restaurant",
+      "target": "grocery delivery",
+      "value": 1
+    },
+    {
+      "source": "bicycles",
+      "target": "selling eggs",
+      "value": 1
+    },
+    {
+      "source": "bicycles",
+      "target": "algorithms",
+      "value": 1
+    },
+    {
+      "source": "bicycles",
+      "target": "travelling",
+      "value": 2
+    },
+    {
+      "source": "bicycles",
+      "target": "selling eggs",
+      "value": 1
+    },
+    {
+      "source": "bicycles",
+      "target": "QR code",
+      "value": 1
+    },
+    {
+      "source": "bicycles",
+      "target": "GPS",
+      "value": 2
+    },
+    {
+      "source": "bicycles",
+      "target": "archaeology",
+      "value": 1
+    }
+  ]
+}

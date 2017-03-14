@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+    .links line {
+        stroke: #999;
+        stroke-opacity: 0.6;
+    }
+
+    .nodes circle {
+        stroke: #fff;
+        stroke-width: 1.5px;
+    }
+
+</style>
+<canvas id="explore-canvas" width="800" height="600" style="border:1px solid #000000;"></canvas>
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<script>
+
+    var canvas = document.getElementById("explore-canvas");
+    var context = canvas.getContext("2d");
+    context.font = "10px Arial";
+
+    var width = document.getElementById('explore-canvas').clientWidth;
+    var height = document.getElementById('explore-canvas').clientHeight;
+
+    var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+    var graphModel = {};
+
+    var simulation = d3.forceSimulation()
+        .force("link", d3.forceLink().id(function (d) {
+            return d.id;
+        }).distance(80))//.strength(0.10))
+        .force("charge", d3.forceManyBody())//.distanceMin(100).strength(-100))
+        .force("center", d3.forceCenter(width / 2, height / 2)).velocityDecay(0.2);
+
+    d3.json("miserables.json", function(error, graph) {
+        if (error) throw error;
+        graphModel = graph;
+
+        simulation
+            .nodes(graph.nodes)
+            .on("tick", ticked);
+
+        simulation.force("link")
+            .links(graph.links);
+
+        d3.select(canvas)
+            .call(d3.drag()
+                .container(canvas)
+                .subject(dragsubject)
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));
+
+        function ticked() {
+            context.clearRect(0, 0, width, height);
+
+            context.beginPath();
+            graph.links.forEach(drawLink);
+            context.strokeStyle = "#aaa";
+            context.stroke();
+
+            graph.nodes.forEach(drawNode);
+        }
+
+        function dragsubject() {
+            var elements = findElementsUnderMouse(d3.event.x, d3.event.y);
+            if (elements.length == 0) {
+                return simulation.find(d3.event.x, d3.event.y);
+            } else {
+                return elements[0];
+            }
+        }
+    });
+
+    function dragstarted() {
+        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+        d3.event.subject.fx = d3.event.subject.x;
+        d3.event.subject.fy = d3.event.subject.y;
+    }
+
+    function dragged() {
+        d3.event.subject.fx = d3.event.x;
+        d3.event.subject.fy = d3.event.y;
+    }
+
+    function dragended() {
+        if (!d3.event.active) simulation.alphaTarget(0);
+        d3.event.subject.fx = null;
+        d3.event.subject.fy = null;
+    }
+
+    function drawLink(d) {
+        context.moveTo(d.source.x, d.source.y);
+        context.lineTo(d.target.x, d.target.y);
+    }
+
+    function drawNode(d) {
+        context.beginPath();
+        context.moveTo(d.x + 3, d.y);
+        context.arc(d.x, d.y, 5, 0, 2 * Math.PI);
+        context.fillStyle = color(d.group);
+        context.fill();
+        context.fillStyle = "#000000";
+        var text = d.id;
+        context.fillText(text, d.x, d.y + 10);
+        d.textSize = {
+            width: context.measureText(text).width,
+            height: context.measureText("‱").width
+        };
+    }
+
+    function isOnText(event) {
+        function getMousePosition(event) {
+            var rect = canvas.getBoundingClientRect();
+            return {
+                x: event.clientX - rect.left,
+                y: event.clientY - rect.top
+            };
+        }
+        var position = getMousePosition(event);
+        var elements = findElementsUnderMouse(position.x, position.y);
+        if (elements.length > 0) {
+            canvas.style.cursor = "pointer";
+        } else {
+            canvas.style.cursor = "auto";
+        }
+    }
+
+    function findElementsUnderMouse(x, y) {
+        return graphModel.nodes.filter(function(node) {
+            return (x >= node.x && x <= (node.x + node.textSize.width)
+                && y >= (node.y) && y <= (node.y + node.textSize.height))
+                || (x >= (node.x - 5) && x <= (node.x + 5)
+                && y >= (node.y - 5) && y <= (node.y + 5));
+        });
+    }
+
+    canvas.addEventListener('mousemove', function(event) {
+        isOnText(event);
+    }, false);
+
+</script>
