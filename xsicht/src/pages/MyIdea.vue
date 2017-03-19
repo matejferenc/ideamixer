@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <span class="subPageTitle">Proposal Idea</span>
+    <span class="subPageTitle">My Idea</span>
 
     <div id="ideas">
 	    <span class="canyou">

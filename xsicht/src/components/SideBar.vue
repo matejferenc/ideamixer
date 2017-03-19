@@ -6,8 +6,8 @@
 			<ul class="menu">
 				<router-link tag="li" to="/" exact><a>Home</a></router-link>
 				<li><router-link to="/random/">Random</router-link></li>
-				<li><router-link to="/proposal">Proposal</router-link></li>
-				<li><router-link to="/my-ideas">MyIdeas</router-link></li>
+				<li><router-link to="/my-idea">My Idea</router-link></li>
+				<li><router-link to="/history">History</router-link></li>
 				<li><router-link to="/explore">Explore</router-link></li>
 			</ul>
 		</nav>
@@ -29,7 +29,7 @@
 	    top: 2em;
 	    width: 30px;
 	    z-index: 30;
-	    transition: .2s ease-in-out all; 
+	    transition: .2s ease-in-out all;
 	}
 
 	#mobile-nav.active {

@@ -12,18 +12,21 @@
         stroke-width: 1.5px;
     }
 
+
 </style>
-<canvas id="explore-canvas" width="800" height="600" style="border:1px solid #000000;"></canvas>
+<body>
+<canvas id="explore-canvas" height="800px" width="800px"></canvas>
+</body>
 <script src="https://d3js.org/d3.v4.js"></script>
 
 <script>
 
     var canvas = document.getElementById("explore-canvas");
     var context = canvas.getContext("2d");
-    context.font = "10px Arial";
+    context.font = "12px Arial";
 
-    var width = document.getElementById('explore-canvas').clientWidth;
-    var height = document.getElementById('explore-canvas').clientHeight;
+    var width = canvas.clientWidth;
+    var height = canvas.clientHeight;
 
     var color = d3.scaleOrdinal(d3.schemeCategory10);
 
@@ -142,5 +145,15 @@
     canvas.addEventListener('mousemove', function(event) {
         isOnText(event);
     }, false);
+
+    window.addEventListener('resize', resizeCanvas, false);
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        width = canvas.clientWidth;
+        height = canvas.clientHeight;
+    }
+    resizeCanvas();
 
 </script>

@@ -4,8 +4,8 @@ import VueRouter from 'vue-router'
 import App from './App'
 import Home from './pages/Home.vue'
 import RandomIdea from './pages/RandomIdea.vue'
-import ProposalIdea from './pages/ProposalIdea.vue'
-import MyIdeas from './pages/MyIdeas.vue'
+import MyIdea from './pages/MyIdea.vue'
+import History from './pages/History.vue'
 import Explore from './pages/Explore.vue'
 
 Vue.use(VueRouter)
@@ -13,8 +13,8 @@ Vue.use(VueRouter)
 const routes = [
   { path: '/', component: Home },
   { path: '/random', component: RandomIdea },
-  { path: '/proposal', component: ProposalIdea },
-  { path: '/my-ideas', component: MyIdeas },
+  { path: '/my-idea', component: MyIdea },
+  { path: '/history', component: History },
   { path: '/explore', component: Explore }
 ]
 
