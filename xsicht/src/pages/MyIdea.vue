@@ -5,7 +5,7 @@
     <div id="ideas">
 	    <span class="canyou">
 	    	Can you combine<br/>
-	    	<input id="word1" @blur="submitIdea();" placeholder="my great idea..."></input><br/>
+	    	<input id="word1" @blur="submitIdea();" placeholder="my great idea..." autofocus></input><br/>
 	    	with<br/>
 	    	<span id="word2"><strong>{{ word }}</strong></span>
 	    	?<br/>
