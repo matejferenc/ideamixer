@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <span class="subPageTitle">My Ideas</span>
+    <h1 class="subPageTitle">My Ideas</h1>
+
+    <hr>
+    
     <ul id="ideas">
       <li v-for="item in history">
         {{ item.words[0] }}
@@ -21,9 +24,6 @@
 </template>
 
 <script>
-/* eslint-disable no-new */
-/* global logShowHistory */
-
 import axios from 'axios'
 import querystring from 'querystring'
 

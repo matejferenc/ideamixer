@@ -1,26 +1,25 @@
 <template>
-  <div id="app">
-    <span class="subPageTitle">My Idea</span>
+  <div id="app" onload="init()">
+    <h1>My Idea</h1>
+    
+    <hr>
 
     <div id="ideas">
-	    <span class="canyou">
-	    	Can you combine<br/>
-	    	<input id="word1" @blur="submitIdea();" placeholder="my great idea..." autofocus></input><br/>
-	    	with<br/>
-	    	<span id="word2"><strong>{{ word }}</strong></span>
-	    	?<br/>
-	    </span>
+	    <p class="as-h3">Can you combine</p>
+	    <input id="my-idea" class="as-h2 thick" @blur="submitIdea();" placeholder="My great idea..." autofocus>
+	    <p class="as-h3">with</p>
+	    <p class="as-h2 thick">{{ word }}</p>
+	    <p class="as-h3">?</p>
 
-	    <button @click="rate('1');" class="success">Good</button>
-	    <button @click="rate('-1');" class="failure">Bad</button>
+      <div class="buttonset">
+  	    <button @click="rate('1');" class="success">Good</button>
+  	    <button @click="rate('-1');" class="failure">Bad</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-/* eslint-disable no-new */
-/* global logGenerate2, logRating */
-
 import axios from 'axios'
 import querystring from 'querystring'
 
@@ -40,7 +39,7 @@ module.exports = {
     },
     rate: function (rating) {
       var vm = this
-      var proposal = document.getElementById('word1').value
+      var proposal = document.getElementById('my-idea').value
       axios.post('/idea/rate', querystring.stringify({
         rating: rating,
         words: [ proposal, vm.word ]
@@ -55,7 +54,7 @@ module.exports = {
     },
     submitIdea() {
       var vm = this
-      var proposal = document.getElementById('word1').value
+      var proposal = document.getElementById('my-idea').value
       axios.post('/idea/submit', querystring.stringify({
         idea: proposal
       }), {
@@ -74,49 +73,49 @@ module.exports = {
 </script>
 
 <style>
-	.canyou {
-		font-weight: 400;
-		font-family: 'Lato', sans-serif;
-    font-size: 48px;
-	}
-
-	.success, .failure {
-		display: inline-block;
-		width: auto;
-		color: #fff;
-		padding: 5px 15px;
-		text-decoration: none;
-		transition: all .2s ease-in-out;
-		font-size: 18px;
+  .success, .failure {
+    display: inline-block;
+    width: auto;
+    color: #fff;
+    padding: 5px 15px;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+    font-size: 18px;
     outline: 0;
     border: 0;
     cursor: pointer;
-	}
+  }
 
-	.success {
-		background: #79d1ad;
-	}
+  .success {
+    background: #79d1ad;
+  }
 
-	.success:hover {
-		background: #41bd8a;
-	}
+  .success:hover {
+    background: #41bd8a;
+  }
 
-	.failure {
-		margin-left: 20px;
-		background: #e67478;
-	}
+  .failure {
+    margin-left: 20px;
+    background: #e67478;
+  }
 
-	.failure:hover {
-		background: #da3339;
-	}
-
-	#word1 {
-    	font-weight: 400;
-        font-family: 'Lato', sans-serif;
-        font-size: 48px;
-        background: transparent;
-        border: none;
-        text-align: center;
-        font-weight: bold;
-	}
+  .failure:hover {
+    background: #da3339;
+  }
+  
+  input {
+    font-family: 'Titillium Web', sans-serif;
+    background: transparent;
+    text-align: center;
+    width: 100%;
+    height: 1.5em;
+    white-space: normal;
+    -moz-text-align-last: center;
+    text-align-last: center;
+    resize: none;
+    border: 0 none white;
+    overflow: hidden;
+    padding: 0;
+    outline: none;
+  }
 </style>

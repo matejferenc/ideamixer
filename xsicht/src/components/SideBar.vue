@@ -21,19 +21,19 @@
 </script>
 
 <style>
-	#mobile-nav {
-		cursor: pointer;
-	    left: 3.5em;
-	    height: 30px;
-	    position: absolute;
-	    top: 2em;
-	    width: 30px;
-	    z-index: 30;
+	#mobile-nav.active {
+		color: #fff;
+	}
+
+	#mobile-nav i {
+		position: fixed;
+		top: 30px;
+		left: 36px;
+		z-index: 30;
 	    transition: .2s ease-in-out all;
 	}
 
-	#mobile-nav.active {
-		color: #fff;
+	#mobile-nav.active i {
 		transform: rotate(90deg);
 	}
 
@@ -50,15 +50,15 @@
 		text-decoration: none;
 		text-transform: uppercase;
 		display: block;
-		padding-left: 3em;
-		width: 100%;
+		padding-left: 1em;
+    	font-size: 1.5em;
+		-webkit-transition: all .5s;
+		-o-transition: all .5s;
+		transition: all .5s;
 	}
 
 	.menu a:hover {
 		margin-left: 1em;
-		-webkit-transition: all .5s;
-		-o-transition: all .5s;
-		transition: all .5s;
 	}
 
 	.menu li {
@@ -81,7 +81,7 @@
 		left: -18em;
 		top: 0;
 		text-align: left;
-		padding-top: 10em;
+		padding-top: 5em;
 		box-sizing: border-box;
 		z-index: 20;
 		height: 100%;
@@ -91,4 +91,32 @@
 	}
 
 	nav.active { left: 0; }
+
+	@media screen and (max-width: 759px) {
+		#mobile-nav {
+			cursor: pointer;
+			position: fixed;
+			top: 0;
+			background: rgba(255,255,255,1);
+			height: 4em;
+			left: 0;
+			right: 0;
+			display: block;
+			text-align: left;
+			padding: 1em 2em;
+			width: 100%;
+			z-index: 30;
+			box-shadow: 0 0 15px 0 rgba(0,0,0,0.25);
+			transition: .2s ease-in-out all;
+		}
+
+		#mobile-nav.active {
+			background: rgba(255,255,255,0);
+			box-shadow: 0 0 15px 0 rgba(0,0,0,0);
+		}
+
+		#mobile-nav i {
+	    	position: static;
+	    }
+	}
 </style>

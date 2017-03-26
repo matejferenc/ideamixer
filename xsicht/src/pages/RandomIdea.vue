@@ -1,26 +1,25 @@
 <template>
   <div id="app">
-    <span class="subPageTitle">Random Idea</span>
+    <h1>Random Idea</h1>
+
+    <hr>
 
     <div id="ideas">
-	    <span class="canyou">
-	    	Can you combine<br/>
-	    	<span id="word1"><strong>{{ words[0] }}</strong></span><br/>
-	    	with<br/>
-	    	<span id="word2"><strong>{{ words[1] }}</strong></span>
-	    	?<br/>
-	    </span>
+	    <p class="as-h3">Can you combine</p>
+    	<p class="as-h2 thick">{{ words[0] }}</p>
+    	<p class="as-h3">with</p>
+    	<p class="as-h2 thick">{{ words[1] }}</p>
+	    <p class="as-h3">?</p>
 
-	    <button @click="rate('1');" class="success">Good</button>
-	    <button @click="rate('-1');" class="failure">Bad</button>
+      <div class="buttonset">
+  	    <button @click="rate('1');" class="success">Good</button>
+  	    <button @click="rate('-1');" class="failure">Bad</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-/* eslint-disable no-new */
-/* global logGenerate2, logRating */
-
 import axios from 'axios'
 import querystring from 'querystring'
 
@@ -60,11 +59,13 @@ module.exports = {
 </script>
 
 <style>
-	.canyou {
-		font-weight: 400;
-		font-family: 'Lato', sans-serif;
-    font-size: 48px;
-	}
+	p {
+    margin: 0;
+  }
+
+  .buttonset {
+    margin: 2em 0;
+  }
 
 	.success, .failure {
 		display: inline-block;

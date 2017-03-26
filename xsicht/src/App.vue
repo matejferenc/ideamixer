@@ -16,7 +16,17 @@ export default {
 </script>
 
 <style>
+* {
+	box-sizing: border-box;
+}
+
 #app {
   padding: 0 280px;
+}
+
+@media only screen and (max-width: 759px) {
+	#app {
+		padding: 70px 20px 0;
+	}
 }
 </style>
