@@ -28,4 +28,31 @@ $(function() {
 	};
 
 	$(".r90").click(function() { $("span").rotate(90) });
+
+	function switchToDesktopView() {
+	   $('nav').addClass('active');
+	   $('#mobile-nav i.fa').hide();
+	   $('.nav-title').show();
+	}
+
+	function switchToMobileView() {
+	   $('nav').removeClass('active');
+	   $('#mobile-nav i.fa').show();
+	   $('.nav-title').hide();
+	}
+
+	function detectCorrectView() {
+		if ($(window).width() >= 760) {
+			switchToDesktopView();
+		} else {
+			switchToMobileView();
+		}	
+
+	}
+
+	$(window).on('resize', function() {
+		detectCorrectView();
+	});
+
+	detectCorrectView();
 });

@@ -1,8 +1,14 @@
 <template>
 	<div class="sidebar">
-		<div id="mobile-nav" class="r90"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></div>
+		<div id="mobile-nav" class="r90">
+			<i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+		</div>
 
 		<nav>
+			<p class="nav-title as-h5"><i class="fa fa-lightbulb-o" aria-hidden="true"></i></p>
+
+			<hr class="mobile-hidden">
+
 			<ul class="menu">
 				<router-link tag="li" to="/" exact><a>Home</a></router-link>
 				<li><router-link to="/random/">Random</router-link></li>
@@ -15,9 +21,9 @@
 </template>
 
 <script>
-	export default {
-	  name: 'SideBar'
-	}
+export default {
+  name: 'SideBar'
+}
 </script>
 
 <style>
@@ -81,7 +87,7 @@
 		left: -18em;
 		top: 0;
 		text-align: left;
-		padding-top: 5em;
+		padding-top: 2em;
 		box-sizing: border-box;
 		z-index: 20;
 		height: 100%;
@@ -91,6 +97,17 @@
 	}
 
 	nav.active { left: 0; }
+
+	nav .nav-title {
+		color: #ddd;
+		padding-left: 1em;
+		text-transform: uppercase;
+	}
+
+	nav hr {
+		margin: 1em 2em;
+		background: #ddd;
+	}
 
 	@media screen and (max-width: 759px) {
 		#mobile-nav {
@@ -117,6 +134,10 @@
 
 		#mobile-nav i {
 	    	position: static;
+	    }
+
+	    nav {
+	    	padding-top: 5em;
 	    }
 	}
 </style>

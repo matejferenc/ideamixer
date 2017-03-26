@@ -21,7 +21,7 @@ export default {
 }
 
 #app {
-  padding: 0 280px;
+  padding: 0 50px 50px 280px;
 }
 
 @media only screen and (max-width: 759px) {
